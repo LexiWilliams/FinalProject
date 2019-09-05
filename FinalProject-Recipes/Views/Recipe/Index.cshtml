@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model FinalProject_Recipes.Models.Recipe
+<h1>Index</h1>
+
+@{
+    @foreach (var item in Model.meals)
+    {
+        @item.strIngredient1 @item.strMeal
+
+    }
+}
