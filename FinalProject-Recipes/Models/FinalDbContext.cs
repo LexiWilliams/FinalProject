@@ -22,6 +22,7 @@ namespace FinalProject_Recipes.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Ingredients> Ingredients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -136,6 +137,23 @@ namespace FinalProject_Recipes.Models
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<Ingredients>(entity =>
+            {
+                entity.Property(e => e.IdIngredient)
+                    .IsRequired()
+                    .HasColumnName("idIngredient")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.StrIngredient)
+                    .IsRequired()
+                    .HasColumnName("strIngredient")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.StrType)
+                    .HasColumnName("strType")
+                    .HasMaxLength(100);
             });
         }
     }
