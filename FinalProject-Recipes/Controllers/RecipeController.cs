@@ -21,84 +21,79 @@ namespace FinalProject_Recipes.Controllers
             _apiKey = _configuration.GetSection("AppConfiguration")["RecipeAPIKey"];
 
         }
-        public IActionResult Index()
+        public IActionResult Index(Recipe recipe)
         {
-            var meal = GetRandomRecipe().Result;
-            return View(meal);
+            return View(recipe);
         }
         public IActionResult Search()
         {
             return View();
         }
-        public IActionResult FindRecipe(string search)
+
+        public IActionResult ViewRecipe(Recipe recipes)
         {
-            var meal = SearchRecipesIngredients(search).Result;
-            return View(meal);
-        }
-        public IActionResult ViewRecipe(Meal id)
-        {
-            var meal = FindRecipesById(id).Result;
-            return View(meal);
+            return View(recipes);
 
         }
-
         public IActionResult Preferences()
         {
             return View();
         }
 
+        public async Task<IActionResult> GetRandomRecipe()
+        {
+            var client = GetHttpClient();
 
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/random.php");
+            var meal = await response.Content.ReadAsAsync<Recipe>();
+            return View("ViewRecipe", meal);
+        }
+        public IActionResult FindRecipes(string search)
+        {
+            return View(search);
+        }
+        // for ingredients
+        public async Task<IActionResult> SearchRecipesIngredients(string search)
+        {
+            var client = GetHttpClient();
 
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?i={search}");
+            var meal = await response.Content.ReadAsAsync<Recipe>();
+            return View("FindRecipes", meal);
+        }
+        public async Task<IActionResult> SearchRecipesTitle(string search)
+        {
+            var client = GetHttpClient();
+
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
+            var meal = await response.Content.ReadAsAsync<Recipe>();
+            return View("FindRecipes", meal);
+        }
+        // for Area
+        public async Task<IActionResult> SearchRecipesArea(string search)
+        {
+            var client = GetHttpClient();
+
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?a={search}");
+            var meal = await response.Content.ReadAsAsync<Recipe>();
+            return View("FindRecipes", meal);
+        }
+        // for Category
+        public async Task<IActionResult> SearchRecipesCategory(string search)
+        {
+            var client = GetHttpClient();
+
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c={search}");
+            var meal = await response.Content.ReadAsAsync<Recipe>();
+            return View("FindRecipes", meal);
+        }
         public HttpClient GetHttpClient()
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://www.themealdb.com");
             return client;
         }
-        public async Task<Recipe> GetRandomRecipe()
-        {
-            var client = GetHttpClient();
 
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/random.php");
-            var meal = await response.Content.ReadAsAsync<Recipe>();
-            return meal;
-        }
-        // for ingredients
-        public async Task<Recipe> SearchRecipesIngredients(string search)
-        {
-            var client = GetHttpClient();
-
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?i={search}");
-            var meal = await response.Content.ReadAsAsync<Recipe>();
-            return meal;
-        }
-        // for Area
-        public async Task<Recipe> SearchRecipesArea(string search)
-        {
-            var client = GetHttpClient();
-
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?a={search}");
-            var meal = await response.Content.ReadAsAsync<Recipe>();
-            return meal;
-        }
-        // for Category
-        public async Task<Recipe> SearchRecipesCategory(string search)
-        {
-            var client = GetHttpClient();
-
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c={search}");
-            var meal = await response.Content.ReadAsAsync<Recipe>();
-            return meal;
-        }
-        public async Task<Recipe> FindRecipesById(Meal meal)
-        {
-            string search = meal.idMeal;
-            var client = GetHttpClient();
-
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={search}");
-            var viewMeal = await response.Content.ReadAsAsync<Recipe>();
-            return viewMeal;
-        }
 
         public IActionResult AddToFavorites(Meal meal)
         {
@@ -138,5 +133,15 @@ namespace FinalProject_Recipes.Controllers
             var name = await response.Content.ReadAsAsync<Meal>();
             return name;
         }
+
+        //public async Task<Recipe> FindRecipesById(Meal meal)
+        //{
+        //    string search = meal.idMeal;
+        //    var client = GetHttpClient();
+
+        //    var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={search}");
+        //    var viewMeal = await response.Content.ReadAsAsync<Recipe>();
+        //    return viewMeal;
+        //}
     }
 }
