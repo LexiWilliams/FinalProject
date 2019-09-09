@@ -99,4 +99,44 @@ namespace FinalProject_Recipes.Controllers
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             return viewMeal;
         }
+
+        public IActionResult AddToFavorites(Meal meal)
+        {
+
+            FavoriteRecipes newFavorite = new FavoriteRecipes();
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            newFavorite.UserId = thisUser.Id; 
+            newFavorite.RecipeId = meal.strMeal; 
+            if (ModelState.IsValid)
+            {
+                _context.FavoriteRecipes.Add(newFavorite);
+                _context.SaveChanges();
+                return RedirectToAction("ViewRecipe", meal);
+            }
+            return View(meal);
+        }
+
+        public IActionResult DisplayFavorite()
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            List<FavoriteRecipes> userFavorites = _context.FavoriteRecipes.Where(u => u.UserId == thisUser.Id).ToList();
+            List<Meal> favoriteList = new List<Meal>();
+
+            foreach (var meal in userFavorites) 
+            {
+                string mealName = meal.RecipeId;
+                Meal foundMeal = GetRecipeByName(mealName).Result; 
+                favoriteList.Add(foundMeal); 
+            }
+            return View(favoriteList);
+        }
+
+        public async Task<Meal> GetRecipeByName(string meal)
+        {
+            var client = GetHttpClient();
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={meal}");
+            var name = await response.Content.ReadAsAsync<Meal>();
+            return name;
+        }
     }
+}
