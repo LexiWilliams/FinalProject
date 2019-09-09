@@ -4,21 +4,72 @@
 }
 
 <h1><u>Search By:</u></h1>
-<form action="/Recipe/FindRecipe" method="post">
+<form action="/Recipe/SearchRecipesTitle" method="post">
+    <h3>Title</h3>
+    <input type="text" name="search" placeholder="Recipe" />
+    <input type="submit" value="Search for Recipe" />
+    <br />
+</form>
+<form action="/Recipe/SearchRecipesIngredients" method="post">
     <h3>Main Ingredient</h3>
     <input type="text" name="search" placeholder="Ingredient" />
     <input type="submit" value="Search for Recipe" />
     <br />
-
+</form>
+<form action="/Recipe/SearchRecipesCategory" method="post">
     <h3>Category</h3>
-    <input type="text" name="search" placeholder="Catergory" />
-    <input type="submit" value="Search for Recipe" />
+    <select name="search">
+        <option value="Beef">Beef</option>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Goat">Goat</option>
+        <option value="Lamb">Lamb</option>
+        <option value="Pasta">Pasta</option>
+        <option value="Pork">Pork</option>
+        <option value="Seafood">Seafood</option>
+        <option value="Side">Side</option>
+        <option value="Starter">Starter</option>
+        <option value="Vegan">Vegan</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Miscellaneous">Miscellaneous</option>
+    </select>
+    <input type="submit" value="Search" />
     <br />
+</form>
+<form action="/Recipe/SearchRecipesArea" method="post">
 
     <h3>Area</h3>
-    <input type="text" name="search" placeholder="Area" />
-    <input type="submit" value="Search for Recipe" />
+    <select name="search">
+        <option value="American">American</option>
+        <option value="British">British</option>
+        <option value="Canadian">Canadian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Dutch">Dutch</option>
+        <option value="Egyptian">Egyptian</option>
+        <option value="French">French</option>
+        <option value="Greek">Greek</option>
+        <option value="Indian">Indian</option>
+        <option value="Irish">Irish</option>
+        <option value="Italian">Italian</option>
+        <option value="Jamaican">Jamaican</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Kenyan">Kenyan</option>
+        <option value="Malaysian">Malaysian</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Moroccan">Moroccan</option>
+        <option value="Russian">Russian</option>
+        <option value="Spanish">Spanish</option>
+        <option value="Thai">Thai</option>
+        <option value="Tunisian">Tunisian</option>
+        <option value="Turkish">Turkish</option>
+        <option value="Vietnamese">Vietnamese</option>
+        <option value="Unknown">Unknown</option>
+    </select>
+    <input type="submit" value="Search" />
 </form>
+<h3>Find a random recipe</h3>
+@Html.ActionLink("Get a random recipe!", "GetRandomRecipe", "Recipe")
 
 
 
