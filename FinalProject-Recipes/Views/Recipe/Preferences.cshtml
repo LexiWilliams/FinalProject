@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Preferences";
+}
+
+<h1><u>Preferences</u></h1>
+
+
+<form action="/Recipe/SavePreferences" method="post">
+    <h2>Restrictions</h2>
+    <div>
+        <input type="checkbox" id="milk" name="milk" value="milk" />
+        <label for="milk">Milk </label>
+    </div>
+    <div>
+        <input type="checkbox" id="eggs" name="eggs" value="eggs" />
+        <label for="eggs">Eggs </label>
+    </div>
+    <div>
+        <input type="checkbox" id="fish" name="fish" value="fish" />
+        <label for="fish">Fish </label>
+    </div>
+    <div>
+        <input type="checkbox" id="shellfish" name="shellfish" value="shellfish" />
+        <label for="shellfish">Shellfish </label>
+    </div>
+    <div>
+        <input type="checkbox" id="treenuts" name="treenuts" value="treenuts" />
+        <label for="treenuts">Treenuts </label>
+    </div>
+    <div>
+        <input type="checkbox" id="peanuts" name="peanuts" value="peanuts" />
+        <label for="peanuts">Peanuts </label>
+    </div>
+    <div>
+        <input type="checkbox" id="wheat" name="wheat" value="wheat" />
+        <label for="wheat">Wheat</label>
+    </div>
+    <div>
+        <input type="checkbox" id="soy" name="soy" value="soy" />
+        <label for="soy">Soy</label>
+    </div>
+    <h2>Diet</h2>
+    <select>
+        <option value="none">None</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="pescatarian">Pescatarian</option>
+        <option value="keto">Keto</option>
+        <option value="paleo">Paleo</option>
+        <option value="glutenFree">Gluten Free</option>
+
+    </select>
+    <br />
+    <br />
+    <input type="submit"  value="Edit Preferences" />
+
+
+</form>
