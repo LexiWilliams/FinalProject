@@ -22,18 +22,17 @@ namespace FinalProject_Recipes.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-
         public virtual DbSet<Diets> Diets { get; set; }
         public virtual DbSet<FavoriteRecipes> FavoriteRecipes { get; set; }
         public virtual DbSet<Friends> Friends { get; set; }
-
+        public virtual DbSet<IngredientList> IngredientList { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=FinalDb;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.\\sqlexpress;Database=FinalDb;Trusted_Connection=True;");
             }
         }
 
@@ -149,7 +148,7 @@ namespace FinalProject_Recipes.Models
                 entity.HasOne(d => d.DietNavigation)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.Diet)
-                    .HasConstraintName("FK__AspNetUser__Diet__778AC167");
+                    .HasConstraintName("FK__AspNetUser__Diet__6383C8BA");
             });
 
             modelBuilder.Entity<Diets>(entity =>
@@ -635,7 +634,7 @@ namespace FinalProject_Recipes.Models
                     .WithMany(p => p.FavoriteRecipes)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FavoriteR__UserI__74AE54BC");
+                    .HasConstraintName("FK__FavoriteR__UserI__60A75C0F");
             });
 
             modelBuilder.Entity<Friends>(entity =>
@@ -647,29 +646,22 @@ namespace FinalProject_Recipes.Models
                 entity.HasOne(d => d.Friend)
                     .WithMany(p => p.FriendsFriend)
                     .HasForeignKey(d => d.FriendId)
-                    .HasConstraintName("FK__Friends__FriendI__71D1E811");
+                    .HasConstraintName("FK__Friends__FriendI__5DCAEF64");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.FriendsUser)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Friends__UserId__70DDC3D8");
+                    .HasConstraintName("FK__Friends__UserId__5CD6CB2B");
             });
 
-            modelBuilder.Entity<Ingredients>(entity =>
+            modelBuilder.Entity<IngredientList>(entity =>
             {
-                entity.Property(e => e.IdIngredient)
-                    .IsRequired()
-                    .HasColumnName("idIngredient")
-                    .HasMaxLength(100);
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.StrIngredient)
-                    .IsRequired()
-                    .HasColumnName("strIngredient")
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.StrType)
-                    .HasColumnName("strType")
-                    .HasMaxLength(100);
+                entity.Property(e => e.GlutenFree).HasColumnName("Gluten Free");
             });
         }
     }
