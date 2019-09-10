@@ -6,7 +6,7 @@
 <h1><u>Preferences</u></h1>
 
 
-<form action="/Recipe/SavePreferences" method="post">
+<form action="/Recipe/EditPreferences" method="post">
     <h2>Restrictions</h2>
     <div>
         <input type="checkbox" id="milk" name="milk" value="milk" />
@@ -41,14 +41,14 @@
         <label for="soy">Soy</label>
     </div>
     <h2>Diet</h2>
-    <select>
+    <select name="diet">
         <option value="none">None</option>
-        <option value="vegan">Vegan</option>
-        <option value="vegetarian">Vegetarian</option>
-        <option value="pescatarian">Pescatarian</option>
-        <option value="keto">Keto</option>
-        <option value="paleo">Paleo</option>
-        <option value="glutenFree">Gluten Free</option>
+        <option value="Vegan">Vegan</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Pescatarian">Pescatarian</option>
+        <option value="Keto">Keto</option>
+        <option value="Paleo">Paleo</option>
+        <option value="Gluten Free">Gluten Free</option>
 
     </select>
     <br />

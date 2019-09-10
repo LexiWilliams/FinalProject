@@ -21,9 +21,10 @@ namespace FinalProject_Recipes.Controllers
             _apiKey = _configuration.GetSection("AppConfiguration")["RecipeAPIKey"];
 
         }
-        public IActionResult Index(Recipe recipe)
+        public IActionResult Index()
         {
-            return View(recipe);
+            var meal = GetRandomRecipe().Result;
+            return View(meal);
         }
         public IActionResult Search()
         {
@@ -143,5 +144,65 @@ namespace FinalProject_Recipes.Controllers
         //    var viewMeal = await response.Content.ReadAsAsync<Recipe>();
         //    return viewMeal;
         //}
+        public IActionResult EditPreferences(string milk, string eggs, string fish, string shellfish, string treenuts, string peanuts, string soy, string wheat, string diet)
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            if (milk == "milk")
+            {
+                thisUser.Milk = true;
+
+            }
+            if (eggs == "eggs")
+            {
+                thisUser.Eggs = true;
+
+            }
+            
+            if (fish == "fish")
+            {
+                thisUser.Fish = true;
+
+            }
+            if (shellfish == "shellfish")
+            {
+                thisUser.Shellfish = true;
+
+            }
+            if (treenuts == "treenuts")
+            {
+                thisUser.Treenuts = true;
+
+            }
+            if (peanuts == "peanuts")
+            {
+                thisUser.Peanuts = true;
+
+            }
+            if (soy == "soy")
+            {
+                thisUser.Soy = true;
+
+            }
+            if (wheat == "wheat")
+            {
+                thisUser.Wheat = true;
+
+            }
+
+            if(diet == "none")
+            {
+                thisUser.Diet = null;
+            }
+            else
+            {
+                thisUser.Diet = diet;
+            }
+           
+            
+            _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+            return RedirectToAction("Search");
+
+        }
     }
 }
