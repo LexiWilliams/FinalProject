@@ -87,34 +87,44 @@ namespace FinalProject_Recipes.Controllers
             client.BaseAddress = new Uri("https://www.themealdb.com");
             return client;
         }
-        public IActionResult AddToFavorites(Meal meal)
+        public IActionResult AddToFavorites(Meal item)
         {
 
             FavoriteRecipes newFavorite = new FavoriteRecipes();
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
             newFavorite.UserId = thisUser.Id;
-            newFavorite.RecipeId = meal.strMeal;
+            newFavorite.RecipeId = item.idMeal;
             if (ModelState.IsValid)
             {
                 _context.FavoriteRecipes.Add(newFavorite);
                 _context.SaveChanges();
-                return RedirectToAction("ViewRecipe", meal);
+                return RedirectToAction("DisplayFavorite");
             }
-            return View(meal);
+            return View(item);
         }
         public IActionResult DisplayFavorite()
         {
+
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
             List<FavoriteRecipes> userFavorites = _context.FavoriteRecipes.Where(u => u.UserId == thisUser.Id).ToList();
             List<Meal> favoriteList = new List<Meal>();
 
-            foreach (var meal in userFavorites)
+            foreach (var item in userFavorites)
             {
-                string mealName = meal.RecipeId;
-                Meal foundMeal = GetRecipeByName(mealName).Result;
+
+                var foundMeal = FindFavRecipesById(item.RecipeId).Result;
                 favoriteList.Add(foundMeal);
             }
             return View(favoriteList);
+        }
+        public async Task<Meal> FindFavRecipesById(string mealId)
+        {
+            var client = GetHttpClient();
+
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={mealId}");
+            var viewMeal = await response.Content.ReadAsAsync<Recipe>();
+            var meal = viewMeal.meals[0];
+            return meal;
         }
 
         public async Task<Meal> GetRecipeByName(string meal)
@@ -124,7 +134,7 @@ namespace FinalProject_Recipes.Controllers
             var name = await response.Content.ReadAsAsync<Meal>();
             return name;
         }
-
+        
         public async Task<Recipe> FindRecipesById(Meal meal)
         {
             string search = meal.idMeal;
