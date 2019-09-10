@@ -63,16 +63,6 @@ namespace FinalProject_Recipes.Controllers
             var meal = await response.Content.ReadAsAsync<Recipe>();
             return View("FindRecipes", meal);
         }
-
-        //public async Task<IActionResult> SearchRecipesTitle(string search)
-        //{
-        //    var client = GetHttpClient();
-
-        //    var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
-        //    var meal = await response.Content.ReadAsAsync<Recipe>();
-        //    return View("FindRecipes", meal);
-        //}
-
         // for Area
         public async Task<IActionResult> SearchRecipesArea(string search)
         {
@@ -97,15 +87,13 @@ namespace FinalProject_Recipes.Controllers
             client.BaseAddress = new Uri("https://www.themealdb.com");
             return client;
         }
-
-
         public IActionResult AddToFavorites(Meal meal)
         {
 
             FavoriteRecipes newFavorite = new FavoriteRecipes();
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            newFavorite.UserId = thisUser.Id; 
-            newFavorite.RecipeId = meal.strMeal; 
+            newFavorite.UserId = thisUser.Id;
+            newFavorite.RecipeId = meal.strMeal;
             if (ModelState.IsValid)
             {
                 _context.FavoriteRecipes.Add(newFavorite);
@@ -114,18 +102,17 @@ namespace FinalProject_Recipes.Controllers
             }
             return View(meal);
         }
-
         public IActionResult DisplayFavorite()
         {
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
             List<FavoriteRecipes> userFavorites = _context.FavoriteRecipes.Where(u => u.UserId == thisUser.Id).ToList();
             List<Meal> favoriteList = new List<Meal>();
 
-            foreach (var meal in userFavorites) 
+            foreach (var meal in userFavorites)
             {
                 string mealName = meal.RecipeId;
-                Meal foundMeal = GetRecipeByName(mealName).Result; 
-                favoriteList.Add(foundMeal); 
+                Meal foundMeal = GetRecipeByName(mealName).Result;
+                favoriteList.Add(foundMeal);
             }
             return View(favoriteList);
         }
@@ -160,7 +147,7 @@ namespace FinalProject_Recipes.Controllers
                 thisUser.Eggs = true;
 
             }
-            
+
             if (fish == "fish")
             {
                 thisUser.Fish = true;
@@ -192,7 +179,7 @@ namespace FinalProject_Recipes.Controllers
 
             }
 
-            if(diet == "none")
+            if (diet == "none")
             {
                 thisUser.Diet = null;
             }
@@ -200,53 +187,77 @@ namespace FinalProject_Recipes.Controllers
             {
                 thisUser.Diet = diet;
             }
-           
-            
+
+
             _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Search");
 
         }
-
-
-        // Filtering 
-        public List<Diets> GetDiets(string diet)
+        public List<IngredientList> GetDiets(string diet)
         {
-
-            var vegan = _context.Diets.Where(x => x.Id == "Vegan").ToList();
-            var keto = _context.Diets.Where(x => x.Id == "Keto").ToList();
-            var vegetarian = _context.Diets.Where(x => x.Id == "Vegetarian").ToList();
-            var paleo = _context.Diets.Where(x => x.Id == "Paleo").ToList();
-            var gluten = _context.Diets.Where(x => x.Id == "GlutenFree").ToList();
-            var none = _context.Diets.Where(x => x.Id == "null").ToList();
-            //var none = new List<Diets>();
-            if (diet == "Vegan")
+            if(diet == "Vegan")
             {
-
-                return vegan;
+            var vegan = _context.IngredientList.Where(x => x.Vegan == true).ToList();
+            return vegan;
             }
-            else if (diet == "Keto")
+            else if(diet == "Keto")
             {
+                var keto = _context.IngredientList.Where(x => x.Keto == true).ToList();
                 return keto;
-            }
-            else if (diet == "Vegetarian")
-            {
-                return vegetarian;
             }
             else if (diet == "Paleo")
             {
+                var paleo = _context.IngredientList.Where(x => x.Paleo == true).ToList();
                 return paleo;
+            }
+            else if (diet == "Vegetarian")
+            {
+                var vegetarian = _context.IngredientList.Where(x => x.Vegetarian == true).ToList();
+                return vegetarian;
             }
             else if (diet == "GlutenFree")
             {
-                return gluten;
+                var glutenFree = _context.IngredientList.Where(x => x.GlutenFree == true).ToList();
+                return glutenFree;
+            }
+            else if (diet == "Pescatarian")
+            {
+                var pescatarian = _context.IngredientList.Where(x => x.Pescatarian == true).ToList();
+                return pescatarian;
             }
             else
             {
+                List<IngredientList> none = new List<IngredientList>();
                 return none;
             }
         }
+        public List<string> AddIngredients(Meal item)
+        {
+            var ingredients = new List<string>();
 
+            ingredients.Add(item.strIngredient1);
+            ingredients.Add(item.strIngredient2);
+            ingredients.Add(item.strIngredient3);
+            ingredients.Add(item.strIngredient4);
+            ingredients.Add(item.strIngredient5);
+            ingredients.Add(item.strIngredient6);
+            ingredients.Add(item.strIngredient7);
+            ingredients.Add(item.strIngredient8);
+            ingredients.Add(item.strIngredient9);
+            ingredients.Add(item.strIngredient10);
+            ingredients.Add(item.strIngredient11);
+            ingredients.Add(item.strIngredient12);
+            ingredients.Add(item.strIngredient13);
+            ingredients.Add(item.strIngredient14);
+            ingredients.Add(item.strIngredient15);
+            ingredients.Add(item.strIngredient16);
+            ingredients.Add(item.strIngredient17);
+            ingredients.Add(item.strIngredient18);
+            ingredients.Add(item.strIngredient19);
+            ingredients.Add(item.strIngredient20);
+            return ingredients;
+        }
         public async Task<IActionResult> SearchRecipesTitle(string search)
         {
             var client = GetHttpClient();
@@ -254,92 +265,39 @@ namespace FinalProject_Recipes.Controllers
             var recipes = await response.Content.ReadAsAsync<Recipe>();
 
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            //var userDiet = thisUser.Diet;
-            var userDiet = "Vegan";
+            var userDiet = thisUser.Diet;
             var diet = GetDiets(userDiet);
-            var pizza = diet[0];
-            var dietStrList = new List<string>();
-            foreach (var item in diet)
-            {
-                dietStrList.Add(item.ToString());
-            }
-
-
             int count = recipes.meals.Length;
-            Recipe filteredRecipes = new Recipe();
-            Meal[] filteredMeals = new Meal[count];
+            var filteredMeals = new Meal[count];
 
-            var filteredRecipeList = new List<Meal>();
-
+            int index = -1;
             if (diet != null)
             {
+              
                 foreach (var item in recipes.meals)
                 {
-                    var ingredients = new List<string>();
-                    ingredients.Add(item.strIngredient1.ToString());
-                    ingredients.Add(item.strIngredient2.ToString());
-                    ingredients.Add(item.strIngredient3.ToString());
-                    ingredients.Add(item.strIngredient4.ToString());
-                    ingredients.Add(item.strIngredient5.ToString());
-                    ingredients.Add(item.strIngredient6.ToString());
-                    ingredients.Add(item.strIngredient7.ToString());
-                    ingredients.Add(item.strIngredient8.ToString());
-                    ingredients.Add(item.strIngredient9.ToString());
-                    ingredients.Add(item.strIngredient10.ToString());
-                    ingredients.Add(item.strIngredient11.ToString());
-                    ingredients.Add(item.strIngredient12.ToString());
-                    ingredients.Add(item.strIngredient13.ToString());
-                    ingredients.Add(item.strIngredient14.ToString());
-                    ingredients.Add(item.strIngredient15.ToString());
-                    ingredients.Add(item.strIngredient16.ToString());
-                    ingredients.Add(item.strIngredient17.ToString());
-                    ingredients.Add(item.strIngredient18.ToString());
-                    ingredients.Add(item.strIngredient19.ToString());
-                    ingredients.Add(item.strIngredient20.ToString());
-
-                    bool isValid = true;
-                    while (isValid)
+                    bool isBad = false;
+                    index++;
+                    var ingredients = AddIngredients(item);
+                    
+                    foreach (var name in diet)
                     {
-                        foreach (var dietIngredient in dietStrList)
-                        {
-                            if (ingredients.Contains(dietIngredient))
-                            {
-                                isValid = false;
-                            }
+                        var ingred = name.Id;
 
-                        }
-                        if (isValid)
+                        if (ingredients.Contains(ingred))
                         {
-                            //filteredMeals.Append(item);
-                            filteredRecipeList.Add(item);
+                            isBad = true;
                         }
-                        break;
                     }
-                    
-                    
-                    //for (int i = 0; i <= diet.Count; i++)
-                    //{
-                    //    var dietString = diet[i].ToString();
-                    //    if (ingredients.Contains(dietString))
-                    //    {
-                    //    }
-                    //    else
-                    //    {
-                    //        filteredMeals.Append(item);
-                    //    }
-                    //}
+                    if (isBad == false)
+                    {
+                        filteredMeals[index] = item;
+                    }
                 }
             }
-            if (filteredMeals == null)
-            {
-                return View("FindRecipes", recipes);
-            }
-            else
-            {
-                //filteredRecipes.meals = filteredMeals;
-                //return View("FindRecipes", filteredRecipes);
-                return View("FindRecipes", filteredRecipeList);
-            }
+            Recipe filteredRecipes = new Recipe();
+            filteredRecipes.meals = filteredMeals;
+            return View("FindRecipes", filteredRecipes);
         }
     }
 }
