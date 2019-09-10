@@ -204,41 +204,41 @@ namespace FinalProject_Recipes.Controllers
             return RedirectToAction("Search");
 
         }
-        public List<IngredientList> GetDiets(string diet)
+        public List<DietsAndRestriction> GetDiets(string diet)
         {
             if(diet == "Vegan")
             {
-            var vegan = _context.IngredientList.Where(x => x.Vegan == true).ToList();
+            var vegan = _context.DietsAndRestriction.Where(x => x.Vegan == true).ToList();
             return vegan;
             }
             else if(diet == "Keto")
             {
-                var keto = _context.IngredientList.Where(x => x.Keto == true).ToList();
+                var keto = _context.DietsAndRestriction.Where(x => x.Keto == true).ToList();
                 return keto;
             }
             else if (diet == "Paleo")
             {
-                var paleo = _context.IngredientList.Where(x => x.Paleo == true).ToList();
+                var paleo = _context.DietsAndRestriction.Where(x => x.Paleo == true).ToList();
                 return paleo;
             }
             else if (diet == "Vegetarian")
             {
-                var vegetarian = _context.IngredientList.Where(x => x.Vegetarian == true).ToList();
+                var vegetarian = _context.DietsAndRestriction.Where(x => x.Vegetarian == true).ToList();
                 return vegetarian;
             }
             else if (diet == "GlutenFree")
             {
-                var glutenFree = _context.IngredientList.Where(x => x.GlutenFree == true).ToList();
+                var glutenFree = _context.DietsAndRestriction.Where(x => x.GlutenFree == true).ToList();
                 return glutenFree;
             }
             else if (diet == "Pescatarian")
             {
-                var pescatarian = _context.IngredientList.Where(x => x.Pescatarian == true).ToList();
+                var pescatarian = _context.DietsAndRestriction.Where(x => x.Pescatarian == true).ToList();
                 return pescatarian;
             }
             else
             {
-                List<IngredientList> none = new List<IngredientList>();
+                List<DietsAndRestriction> none = new List<DietsAndRestriction>();
                 return none;
             }
         }
