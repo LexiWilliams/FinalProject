@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FinalProject_Recipes.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace FinalProject_Recipes.Controllers
 {
+    [Authorize]
     public class FavoritesController : Controller
     {
         private readonly FinalDbContext _context;
