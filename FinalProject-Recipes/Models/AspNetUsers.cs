@@ -41,6 +41,7 @@ namespace FinalProject_Recipes.Models
         public bool? Peanuts { get; set; }
         public bool? Wheat { get; set; }
         public bool? Soy { get; set; }
+        public bool? Private { get; set; }
 
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }

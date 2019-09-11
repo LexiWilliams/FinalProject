@@ -118,7 +118,7 @@ namespace FinalProject_Recipes.Controllers
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             return viewMeal;
         }
-        public IActionResult EditPreferences(string milk, string eggs, string fish, string shellfish, string treenuts, string peanuts, string soy, string wheat, string diet)
+        public IActionResult EditPreferences(string milk, string eggs, string fish, string shellfish, string treenuts, string peanuts, string soy, string wheat, string diet, string privacy)
         {
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
             if (milk == "milk")
@@ -161,6 +161,14 @@ namespace FinalProject_Recipes.Controllers
             else
             {
                 thisUser.Diet = diet;
+            }
+            if (privacy == "private")
+            {
+                thisUser.Private = true;
+            }
+            else if (privacy == "public")
+            {
+                thisUser.Private = false;
             }
             _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();

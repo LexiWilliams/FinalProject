@@ -7,6 +7,15 @@
 
 
 <form action="/Recipe/EditPreferences" method="post">
+    <h2>Privacy</h2>
+    <div>
+
+        <select name="privacy">
+            <option value="public">Public Profile</option>
+            <option value="private">Private Profile</option>
+        </select>
+        <br />
+    </div>
     <h2>Restrictions</h2>
     <div>
         <input type="checkbox" id="milk" name="milk" value="milk" />
@@ -49,11 +58,10 @@
         <option value="Keto">Keto</option>
         <option value="Paleo">Paleo</option>
         <option value="Gluten Free">Gluten Free</option>
-
     </select>
     <br />
     <br />
-    <input type="submit"  value="Edit Preferences" />
+    <input type="submit" value="Edit Preferences" />
 
 
 </form>
