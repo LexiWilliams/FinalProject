@@ -7,9 +7,11 @@ using FinalProject_Recipes.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProject_Recipes.Controllers
 {
+    [Authorize]
     public class FriendController : Controller
     {
         private readonly FinalDbContext _context;
@@ -55,16 +57,14 @@ namespace FinalProject_Recipes.Controllers
             List<AspNetUsers> userFriendList = new List<AspNetUsers>();
             foreach(var friend in friendList)
             {
-                var individual = _context.AspNetUsers.Where(u => u.Id == friend.FriendId).First();
-                userFriendList.Add(individual);
+                if (friend.FriendId != null)
+                {
+                    var individual = _context.AspNetUsers.Where(u => u.Id == friend.FriendId).First();
+                    userFriendList.Add(individual);
+                }
             }
-            
             return View(userFriendList);
-            
-
         }
-
-
 
         public IActionResult AddFriend(AspNetUsers user)
         {
@@ -83,8 +83,23 @@ namespace FinalProject_Recipes.Controllers
             return View(user);
         }
 
-        
-
+        public IActionResult RemoveFriend(AspNetUsers friend)
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            List<Friends> oldFriend = _context.Friends.Where(u => u.UserId == thisUser.Id).ToList();
+            Friends friendToDelete = new Friends();
+            foreach (var item in oldFriend)
+            {
+                if (item.FriendId == friend.Id)
+                {
+                    friendToDelete = item;
+                    break;
+                }
+            }
+            _context.Friends.Remove(friendToDelete);
+            _context.SaveChanges();
+            return RedirectToAction("ViewFriends");
+        }
 
     }
 

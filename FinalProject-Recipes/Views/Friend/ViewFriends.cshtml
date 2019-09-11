@@ -6,6 +6,7 @@
 @model IEnumerable<FinalProject_Recipes.Models.AspNetUsers>
 
 <h1>View Friends</h1>
+@Html.ActionLink("Add A Friend", "Index", "Friend")
 <table class="table">
     <tr>
         <th>Friend</th>
@@ -19,7 +20,7 @@
             <td>@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>
 
     
-            <td>@Html.ActionLink("Remove From List", "RemoveFriend", "Friends", item)</td>
+            <td>@Html.ActionLink("Remove From List", "RemoveFriend", "Friend", item)</td>
         </tr>
     }
 </table>
