@@ -30,18 +30,35 @@ namespace FinalProject_Recipes.Controllers
 
         public IActionResult AddToFavorites(Meal item)
         {
-
+            
             FavoriteRecipes newFavorite = new FavoriteRecipes();
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            newFavorite.UserId = thisUser.Id;
-            newFavorite.RecipeId = item.idMeal;
-            if (ModelState.IsValid)
+
+            var favList = _context.FavoriteRecipes.Where(u => u.UserId == thisUser.Id).ToList();
+            List<string> mealIdList = new List<string>();
+            foreach (var meal in favList)
             {
-                _context.FavoriteRecipes.Add(newFavorite);
-                _context.SaveChanges();
-                return RedirectToAction("DisplayFavorite");
+                mealIdList.Add(meal.RecipeId);
             }
-            return View(item);
+
+            if (mealIdList.Contains(item.idMeal))
+            {
+                return View();
+            }
+            else
+            {
+                newFavorite.UserId = thisUser.Id;
+                newFavorite.RecipeId = item.idMeal;
+                if (ModelState.IsValid)
+                {
+                    _context.FavoriteRecipes.Add(newFavorite);
+                    _context.SaveChanges();
+                    return RedirectToAction("DisplayFavorite");
+                }
+                return View(item);
+            }
+
+            
         }
         public IActionResult DisplayFavorite()
         {
