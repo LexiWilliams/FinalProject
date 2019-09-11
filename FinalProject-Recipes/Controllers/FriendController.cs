@@ -47,6 +47,25 @@ namespace FinalProject_Recipes.Controllers
 
         }
 
+        public IActionResult ViewFriends()
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+
+            var friendList = _context.Friends.Where(f => f.UserId == thisUser.Id).ToList();
+            List<AspNetUsers> userFriendList = new List<AspNetUsers>();
+            foreach(var friend in friendList)
+            {
+                var individual = _context.AspNetUsers.Where(u => u.Id == friend.FriendId).First();
+                userFriendList.Add(individual);
+            }
+            
+            return View(userFriendList);
+            
+
+        }
+
+
+
         public IActionResult AddFriend(AspNetUsers user)
         {
 
@@ -59,26 +78,12 @@ namespace FinalProject_Recipes.Controllers
             {
                 _context.Friends.Add(newFriend);
                 _context.SaveChanges();
-                return RedirectToAction("DisplayFriend");
+                return RedirectToAction("ViewFriends");
             }
             return View(user);
         }
 
-        //public IActionResult AddToFavorites(Meal item)
-        //{
-
-        //    FavoriteRecipes newFavorite = new FavoriteRecipes();
-        //    AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-        //    newFavorite.UserId = thisUser.Id;
-        //    newFavorite.RecipeId = item.idMeal;
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.FavoriteRecipes.Add(newFavorite);
-        //        _context.SaveChanges();
-        //        return RedirectToAction("DisplayFavorite");
-        //    }
-        //    return View(item);
-        //}
+        
 
 
     }
