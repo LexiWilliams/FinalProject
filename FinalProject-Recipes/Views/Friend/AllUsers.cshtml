@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "FriendsIndex";
+}
+
+@model IEnumerable<AspNetUsers>
+
+@foreach (var users in Model.ToList())
+{
+
+    <p>@users.UserName</p>
+
+}
