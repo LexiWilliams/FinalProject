@@ -144,6 +144,8 @@ namespace FinalProject_Recipes.Controllers
                     break;
                 }
             }
+            _context.FavoriteRecipes.Remove(recipeToDelete);
+            _context.SaveChanges();
             return RedirectToAction("DisplayFavorite");
         }
         public async Task<Meal> FindFavRecipesById(string mealId)
