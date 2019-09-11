@@ -63,9 +63,24 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?i={search}");
             var recipes = await response.Content.ReadAsAsync<Recipe>();
-            var filteredRecipes = FilterRecipes(recipes);
+            var actualRecipes = GetRecipesById(recipes);
+            var filteredRecipes = FilterRecipes(actualRecipes);
 
             return View("FindRecipes", filteredRecipes);
+        }
+        public Recipe GetRecipesById(Recipe recipes)
+        {
+            Recipe allRecipes = new Recipe();
+            Meal[] meals = new Meal[recipes.meals.Length];
+            int index = 0;
+            foreach(var item in recipes.meals)
+            {
+                var recipe = FindFavRecipesById(item.idMeal);
+                meals[index] = recipe.Result;
+                index++;
+            }
+            allRecipes.meals = meals;
+            return allRecipes;
         }
         // for Area
         public async Task<IActionResult> SearchRecipesArea(string search)
@@ -79,15 +94,6 @@ namespace FinalProject_Recipes.Controllers
             return View("FindRecipes", filteredRecipes);
         }
         // for Category
-        public async Task<IActionResult> SearchRecipesCategory(string search)
-        {
-            var client = GetHttpClient();
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c={search}");
-            var recipes = await response.Content.ReadAsAsync<Recipe>();
-            var filteredRecipes = FilterRecipes(recipes);
-
-            return View("FindRecipes", filteredRecipes);
-        }
         public HttpClient GetHttpClient()
         {
             var client = new HttpClient();
@@ -349,7 +355,16 @@ namespace FinalProject_Recipes.Controllers
 
             return View("FindRecipes", filteredRecipes);
         }
-        public Recipe FilterRecipes(Recipe recipes)
+        public async Task<IActionResult> SearchRecipesCategory(string search)
+        {
+            var client = GetHttpClient();
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c={search}");
+            var recipes = await response.Content.ReadAsAsync<Recipe>();
+            var filteredRecipes = FilterRecipesGroup(recipes);
+
+            return View("FindRecipes", filteredRecipes);
+        }
+        public Recipe FilterRecipesGroup(Recipe recipes)
         {
             var restrictions = GetAllRestrictions();
 
@@ -369,6 +384,51 @@ namespace FinalProject_Recipes.Controllers
                         var ingred = name.Id;
 
                         if (ingredients.Contains(ingred))
+                        {
+                            isBad = true;
+                        }
+                    }
+                    if (isBad == false)
+                    {
+                        filteredMeals[index] = item;
+                    }
+                    index++;
+                }
+            }
+            Recipe filteredRecipes = new Recipe();
+            filteredRecipes.meals = filteredMeals;
+            return filteredRecipes;
+        }
+        public Recipe FilterRecipes(Recipe recipes)
+        {
+            var restrictions = GetAllRestrictions();
+
+            int count = recipes.meals.Length;
+            var filteredMeals = new Meal[count];
+            int index = 0;
+
+            if (restrictions != null)
+            {
+                foreach (var item in recipes.meals)
+                {
+                    bool isBad = false;
+                    var ingredients = AddIngredients(item);
+                    var instructions = item.strInstructions;
+
+                    foreach (var name in restrictions)
+                    {
+                        var ingred = name.Id;
+
+                        if (ingredients.Contains(ingred))
+                        {
+                            isBad = true;
+                        }
+                    }
+                    foreach (var name in restrictions)
+                    {
+                        var ingred = name.Id;
+
+                        if (instructions.Contains(ingred))
                         {
                             isBad = true;
                         }
