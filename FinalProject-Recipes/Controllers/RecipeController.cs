@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FinalProject_Recipes.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace FinalProject_Recipes.Controllers
 {
+    
     public class RecipeController : Controller
     {
         private readonly FinalDbContext _context;
@@ -218,99 +220,110 @@ namespace FinalProject_Recipes.Controllers
         }
         public List<DietsAndRestriction> GetDiet()
         {
-            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            var userDiet = thisUser.Diet;
+            if (User.Identity.Name != null)
+            {
+                AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+                var userDiet = thisUser.Diet;
 
-            if (userDiet == "Vegan")
-            {
-            var vegan = _context.DietsAndRestriction.Where(x => x.Vegan == true).ToList();
-            return vegan;
-            }
-            else if(userDiet == "Keto")
-            {
-                var keto = _context.DietsAndRestriction.Where(x => x.Keto == true).ToList();
-                return keto;
-            }
-            else if (userDiet == "Paleo")
-            {
-                var paleo = _context.DietsAndRestriction.Where(x => x.Paleo == true).ToList();
-                return paleo;
-            }
-            else if (userDiet == "Vegetarian")
-            {
-                var vegetarian = _context.DietsAndRestriction.Where(x => x.Vegetarian == true).ToList();
-                return vegetarian;
-            }
-            else if (userDiet == "GlutenFree")
-            {
-                var glutenFree = _context.DietsAndRestriction.Where(x => x.GlutenFree == true).ToList();
-                return glutenFree;
-            }
-            else if (userDiet == "Pescatarian")
-            {
-                var pescatarian = _context.DietsAndRestriction.Where(x => x.Pescatarian == true).ToList();
-                return pescatarian;
+                if (userDiet == "Vegan")
+                {
+                    var vegan = _context.DietsAndRestriction.Where(x => x.Vegan == true).ToList();
+                    return vegan;
+                }
+                else if (userDiet == "Keto")
+                {
+                    var keto = _context.DietsAndRestriction.Where(x => x.Keto == true).ToList();
+                    return keto;
+                }
+                else if (userDiet == "Paleo")
+                {
+                    var paleo = _context.DietsAndRestriction.Where(x => x.Paleo == true).ToList();
+                    return paleo;
+                }
+                else if (userDiet == "Vegetarian")
+                {
+                    var vegetarian = _context.DietsAndRestriction.Where(x => x.Vegetarian == true).ToList();
+                    return vegetarian;
+                }
+                else if (userDiet == "GlutenFree")
+                {
+                    var glutenFree = _context.DietsAndRestriction.Where(x => x.GlutenFree == true).ToList();
+                    return glutenFree;
+                }
+                else if (userDiet == "Pescatarian")
+                {
+                    var pescatarian = _context.DietsAndRestriction.Where(x => x.Pescatarian == true).ToList();
+                    return pescatarian;
+                }
+                else
+                {
+                    List<DietsAndRestriction> none = new List<DietsAndRestriction>();
+                    return none;
+                }
             }
             else
             {
-                List<DietsAndRestriction> none = new List<DietsAndRestriction>();
+               List<DietsAndRestriction> none = new List<DietsAndRestriction>();
                 return none;
             }
         }
         public List<DietsAndRestriction> GetAllergies()
         {
-            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            var milk = thisUser.Milk;
-            var eggs = thisUser.Eggs;
-            var shellfish = thisUser.Shellfish;
-            var fish = thisUser.Fish;
-            var soy = thisUser.Soy;
-            var wheat = thisUser.Wheat;
-            var treenuts = thisUser.Treenuts;
-            var peanuts = thisUser.Peanuts;
             List<DietsAndRestriction> restrictions = new List<DietsAndRestriction>();
+            if (User.Identity.Name != null)
+            {
+                AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+                var milk = thisUser.Milk;
+                var eggs = thisUser.Eggs;
+                var shellfish = thisUser.Shellfish;
+                var fish = thisUser.Fish;
+                var soy = thisUser.Soy;
+                var wheat = thisUser.Wheat;
+                var treenuts = thisUser.Treenuts;
+                var peanuts = thisUser.Peanuts;
 
-            if (milk == true)
-            {
-                var milkList = _context.DietsAndRestriction.Where(x => x.Milk == true).ToList();
-                restrictions.AddRange(milkList);
+                if (milk == true)
+                {
+                    var milkList = _context.DietsAndRestriction.Where(x => x.Milk == true).ToList();
+                    restrictions.AddRange(milkList);
+                }
+                if (eggs == true)
+                {
+                    var eggsList = _context.DietsAndRestriction.Where(x => x.Eggs == true).ToList();
+                    restrictions.AddRange(eggsList);
+                }
+                if (shellfish == true)
+                {
+                    var shellfishList = _context.DietsAndRestriction.Where(x => x.Shellfish == true).ToList();
+                    restrictions.AddRange(shellfishList);
+                }
+                if (fish == true)
+                {
+                    var fishList = _context.DietsAndRestriction.Where(x => x.Fish == true).ToList();
+                    restrictions.AddRange(fishList);
+                }
+                if (soy == true)
+                {
+                    var soyList = _context.DietsAndRestriction.Where(x => x.Soy == true).ToList();
+                    restrictions.AddRange(soyList);
+                }
+                if (wheat == true)
+                {
+                    var wheatList = _context.DietsAndRestriction.Where(x => x.Wheat == true).ToList();
+                    restrictions.AddRange(wheatList);
+                }
+                else if (treenuts == true)
+                {
+                    var treenutsList = _context.DietsAndRestriction.Where(x => x.Treenuts == true).ToList();
+                    restrictions.AddRange(treenutsList);
+                }
+                if (peanuts == true)
+                {
+                    var peanutsList = _context.DietsAndRestriction.Where(x => x.Peaunts == true).ToList();
+                    restrictions.AddRange(peanutsList);
+                }
             }
-            if (eggs == true)
-            {
-                var eggsList = _context.DietsAndRestriction.Where(x => x.Eggs == true).ToList();
-                restrictions.AddRange(eggsList);
-            }
-            if (shellfish == true)
-            {
-                var shellfishList = _context.DietsAndRestriction.Where(x => x.Shellfish == true).ToList();
-                restrictions.AddRange(shellfishList);
-            }
-            if (fish == true)
-            {
-                var fishList = _context.DietsAndRestriction.Where(x => x.Fish == true).ToList();
-                restrictions.AddRange(fishList);
-            }
-            if (soy == true)
-            {
-                var soyList = _context.DietsAndRestriction.Where(x => x.Soy == true).ToList();
-                restrictions.AddRange(soyList);
-            }
-            if (wheat == true)
-            {
-                var wheatList = _context.DietsAndRestriction.Where(x => x.Wheat == true).ToList();
-                restrictions.AddRange(wheatList);
-            }
-            else if (treenuts == true)
-            {
-                var treenutsList = _context.DietsAndRestriction.Where(x => x.Treenuts == true).ToList();
-                restrictions.AddRange(treenutsList);
-            }
-            if (peanuts == true)
-            {
-                var peanutsList = _context.DietsAndRestriction.Where(x => x.Peaunts == true).ToList();
-                restrictions.AddRange(peanutsList);
-            }
-                return restrictions;
+            return restrictions;
         }
         public List<DietsAndRestriction> GetAllRestrictions()
         {
