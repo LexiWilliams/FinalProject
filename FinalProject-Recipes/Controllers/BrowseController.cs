@@ -35,13 +35,13 @@ namespace FinalProject_Recipes.Controllers
             return client;
         }
 
-        public async Task<IActionResult> AllBeefRecipes()
+        public async Task<IActionResult> Beef()
         {
             var client = GetHttpClient();
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Beef");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Breakfast()
         {
@@ -49,7 +49,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Breakfast");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Chicken()
         {
@@ -57,7 +57,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Chicken");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Goat()
         {
@@ -65,7 +65,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Goat");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Lamb()
         {
@@ -73,7 +73,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Lamb");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Pasta()
         {
@@ -81,7 +81,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Pasta");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Pork()
         {
@@ -89,7 +89,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Pork");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes",meal);
         }
         public async Task<IActionResult> Seafood()
         {
@@ -97,7 +97,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Seafood");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Side()
         {
@@ -105,7 +105,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Side");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
         public async Task<IActionResult> Starter()
         {
@@ -113,7 +113,7 @@ namespace FinalProject_Recipes.Controllers
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Starter");
             var meal = await response.Content.ReadAsAsync<Recipe>();
-            return View(meal);
+            return RedirectToAction("ViewRecipes", meal);
         }
 
     }

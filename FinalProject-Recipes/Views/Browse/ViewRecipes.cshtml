@@ -1,13 +1,12 @@
 ﻿
-
 @{
-    ViewData["Title"] = "Pasta";
+    ViewData["Title"] = "ViewRecipes";
 }
 @model FinalProject_Recipes.Models.Recipe
 
 <table class="table-dark">
     <tr>
-        <th><b><u>Pasta Recipes</u></b></th>
+        <th><b><u>Recipes</u></b></th>
     </tr>
     @foreach (var item in Model.meals)
     {
@@ -18,7 +17,4 @@
         </tr>
     }
 </table>
-
-
-
 
