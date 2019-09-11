@@ -92,5 +92,20 @@ namespace FinalProject_Recipes.Controllers
             client.BaseAddress = new Uri("https://www.themealdb.com");
             return client;
         }
+        public IActionResult DisplayFriendFavorite(AspNetUsers friend)
+        {
+
+            ///AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            List<FavoriteRecipes> userFavorites = _context.FavoriteRecipes.Where(u => u.UserId == friend.Id).ToList();
+            List<Meal> favoriteList = new List<Meal>();
+
+            foreach (var item in userFavorites)
+            {
+
+                var foundMeal = FindFavRecipesById(item.RecipeId).Result;
+                favoriteList.Add(foundMeal);
+            }
+            return View("DisplayFriendFavorite",favoriteList);
+        }
     }
 }
