@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace FinalProject_Recipes.Controllers
 {
-    
     public class RecipeController : Controller
     {
         private readonly FinalDbContext _context;
@@ -21,7 +20,6 @@ namespace FinalProject_Recipes.Controllers
             _context = context;
             _configuration = configuration;
             _apiKey = _configuration.GetSection("AppConfiguration")["RecipeAPIKey"];
-
         }
         public IActionResult Index()
         {
@@ -32,22 +30,18 @@ namespace FinalProject_Recipes.Controllers
         {
             return View();
         }
-
         public IActionResult ViewRecipe(Meal meal)
         {
             var recipe = FindRecipesById(meal).Result;
             return View(recipe);
-
         }
         public IActionResult Preferences()
         {
             return View();
         }
-
         public async Task<IActionResult> GetRandomRecipe()
         {
             var client = GetHttpClient();
-
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/random.php");
             var recipes = await response.Content.ReadAsAsync<Recipe>();
             var filteredRecipes = FilterRecipes(recipes);
@@ -84,22 +78,18 @@ namespace FinalProject_Recipes.Controllers
             allRecipes.meals = meals;
             return allRecipes;
         }
-
         public async Task<Meal> FindFavRecipesById(string mealId)
         {
             var client = GetHttpClient();
-
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={mealId}");
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             var meal = viewMeal.meals[0];
             return meal;
         }
-
         // for Area
         public async Task<IActionResult> SearchRecipesArea(string search)
         {
             var client = GetHttpClient();
-
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?a={search}");
             var recipes = await response.Content.ReadAsAsync<Recipe>();
             var filteredRecipes = FilterRecipes(recipes);
@@ -113,8 +103,6 @@ namespace FinalProject_Recipes.Controllers
             client.BaseAddress = new Uri("https://www.themealdb.com");
             return client;
         }
-        
-
         public async Task<Meal> GetRecipeByName(string meal)
         {
             var client = GetHttpClient();
@@ -122,12 +110,10 @@ namespace FinalProject_Recipes.Controllers
             var name = await response.Content.ReadAsAsync<Meal>();
             return name;
         }
-        
         public async Task<Recipe> FindRecipesById(Meal meal)
         {
             string search = meal.idMeal;
             var client = GetHttpClient();
-
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={search}");
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             return viewMeal;
@@ -138,43 +124,34 @@ namespace FinalProject_Recipes.Controllers
             if (milk == "milk")
             {
                 thisUser.Milk = true;
-
             }
             if (eggs == "eggs")
             {
                 thisUser.Eggs = true;
-
             }
-
             if (fish == "fish")
             {
                 thisUser.Fish = true;
-
             }
             if (shellfish == "shellfish")
             {
                 thisUser.Shellfish = true;
-
             }
             if (treenuts == "treenuts")
             {
                 thisUser.Treenuts = true;
-
             }
             if (peanuts == "peanuts")
             {
                 thisUser.Peanuts = true;
-
             }
             if (soy == "soy")
             {
                 thisUser.Soy = true;
-
             }
             if (wheat == "wheat")
             {
                 thisUser.Wheat = true;
-
             }
 
             if (diet == "none")
@@ -185,12 +162,9 @@ namespace FinalProject_Recipes.Controllers
             {
                 thisUser.Diet = diet;
             }
-
-
             _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Search");
-
         }
         public List<string> AddIngredients(Meal item)
         {
