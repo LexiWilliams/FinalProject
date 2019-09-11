@@ -21,19 +21,6 @@ namespace FinalProject_Recipes.Controllers
             _configuration = configuration;
         }
 
-        //public IActionResult Index()
-        //{
-        //    List<AspNetUsers> users = new List<AspNetUsers>();
-        //    foreach (var user in _context.AspNetUsers)
-        //    {
-
-        //        users.Add(new AspNetUsers() { Id = user.Id, UserName = user.UserName });
-        //    }
-
-        //    return View("UserSearchResult", users);
-
-        //}
-
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
