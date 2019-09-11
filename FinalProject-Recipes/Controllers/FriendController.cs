@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,6 +47,42 @@ namespace FinalProject_Recipes.Controllers
 
         }
 
+        public IActionResult AddFriend(AspNetUsers user)
+        {
+
+            Friends newFriend = new Friends();
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+
+            newFriend.UserId = thisUser.Id;
+            newFriend.FriendId = user.Id;
+            if (ModelState.IsValid)
+            {
+                _context.Friends.Add(newFriend);
+                _context.SaveChanges();
+                return RedirectToAction("DisplayFriend");
+            }
+            return View(user);
+        }
+
+        //public IActionResult AddToFavorites(Meal item)
+        //{
+
+        //    FavoriteRecipes newFavorite = new FavoriteRecipes();
+        //    AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+        //    newFavorite.UserId = thisUser.Id;
+        //    newFavorite.RecipeId = item.idMeal;
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.FavoriteRecipes.Add(newFavorite);
+        //        _context.SaveChanges();
+        //        return RedirectToAction("DisplayFavorite");
+        //    }
+        //    return View(item);
+        //}
+
+
     }
 
 }
+
+
