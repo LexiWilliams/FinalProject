@@ -10,7 +10,7 @@
 @{
     @foreach (var item in Model.meals)
     {
-        @Html.ActionLink("Add to Favorites", "AddToFavorites", item)
+        @Html.ActionLink("Add to Favorites", "AddToFavorites", "Favorites", item)
         <br />
         <img src="@item.strMealThumb" alt="@item.strMeal" />
 

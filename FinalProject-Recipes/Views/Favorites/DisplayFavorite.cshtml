@@ -14,8 +14,8 @@
         <tr>
             <td>@recipe.strMeal</td>
             <td><img src="@recipe.strMealThumb" alt="@recipe.strMeal" width="100" height="100" /></td>
-            <td>@Html.ActionLink("View Recipe", "ViewRecipe", recipe)</td>
-            <td>@Html.ActionLink("Remove From List", "RemoveFavorite", "Recipe", recipe)</td>
+            <td>@Html.ActionLink("View Recipe", "ViewRecipe","Recipe", recipe)</td>
+            <td>@Html.ActionLink("Remove From List", "RemoveFavorite", "Favorites", recipe)</td>
         </tr>
         }
     }
