@@ -117,6 +117,22 @@ namespace FinalProject_Recipes.Controllers
             }
             return View(favoriteList);
         }
+
+        public IActionResult RemoveFavorite(Meal meal)
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            List<FavoriteRecipes> userFavorites = _context.FavoriteRecipes.Where(u => u.UserId == thisUser.Id).ToList();
+            FavoriteRecipes recipeToDelete = new FavoriteRecipes();
+            foreach (var item in userFavorites)
+            {
+                if (item.RecipeId == meal.idMeal)
+                {
+                    recipeToDelete = item;
+                    break;
+                }
+            }
+            return RedirectToAction("DisplayFavorite");
+        }
         public async Task<Meal> FindFavRecipesById(string mealId)
         {
             var client = GetHttpClient();
