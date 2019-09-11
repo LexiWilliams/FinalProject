@@ -1,6 +1,5 @@
 ﻿
 
-
 @model IEnumerable<FinalProject_Recipes.Models.AspNetUsers>
 
 @{
@@ -36,9 +35,20 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
+                    @Html.ActionLink("Add Friend", "AddFriend", "Friend", item)
+
                 </td>
+
 
             </tr>
         }
     </tbody>
 </table>
+
+
+
+
+
+
+
+
