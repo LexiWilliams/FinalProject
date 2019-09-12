@@ -125,33 +125,65 @@ namespace FinalProject_Recipes.Controllers
             {
                 thisUser.Milk = true;
             }
+            else
+            {
+                thisUser.Milk = false;
+            }
             if (eggs == "eggs")
             {
                 thisUser.Eggs = true;
+            }
+            else
+            {
+                thisUser.Eggs = false;
             }
             if (fish == "fish")
             {
                 thisUser.Fish = true;
             }
+            else
+            {
+                thisUser.Fish = false;
+            }
             if (shellfish == "shellfish")
             {
                 thisUser.Shellfish = true;
+            }
+            else
+            {
+                thisUser.Shellfish = false;
             }
             if (treenuts == "treenuts")
             {
                 thisUser.Treenuts = true;
             }
+            else
+            {
+                thisUser.Treenuts = false;
+            }
             if (peanuts == "peanuts")
             {
                 thisUser.Peanuts = true;
+            }
+            else
+            {
+                thisUser.Peanuts = false;
             }
             if (soy == "soy")
             {
                 thisUser.Soy = true;
             }
+            else
+            {
+                thisUser.Soy = false;
+            }
             if (wheat == "wheat")
             {
                 thisUser.Wheat = true;
+            }
+            else
+            {
+                thisUser.Wheat = false;
             }
 
             if (diet == "none")
