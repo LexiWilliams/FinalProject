@@ -6,6 +6,7 @@ namespace FinalProject_Recipes.Models
 {
     public partial class FinalDbContext : DbContext
     {
+        
         public FinalDbContext()
         {
         }
@@ -35,6 +36,8 @@ namespace FinalProject_Recipes.Models
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.\\sqlexpress;Database=FinalDb;Trusted_Connection=True;");
+
+
             }
         }
 

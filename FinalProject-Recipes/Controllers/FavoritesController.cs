@@ -73,6 +73,7 @@ namespace FinalProject_Recipes.Controllers
                 var foundMeal = FindFavRecipesById(item.RecipeId).Result;
                 favoriteList.Add(foundMeal);
             }
+
             return View(favoriteList);
         }
 
