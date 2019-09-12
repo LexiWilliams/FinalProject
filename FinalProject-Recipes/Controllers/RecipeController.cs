@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FinalProject_Recipes.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -407,12 +408,22 @@ namespace FinalProject_Recipes.Controllers
         }
         public async Task<IActionResult> SearchRecipesTitle(string search)
         {
-            var client = GetHttpClient();
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
-            var recipes = await response.Content.ReadAsAsync<Recipe>();
-            var filteredRecipes = FilterRecipes(recipes);
+            Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
+            if (rgx.IsMatch(search))
+                {
 
-            return View("FindRecipes", filteredRecipes);
+                var client = GetHttpClient();
+                var response = await client.GetAsync($"api /json/v1/{_apiKey}/search.php?s={search}");
+                var recipes = await response.Content.ReadAsAsync<Recipe>();
+                var filteredRecipes = FilterRecipes(recipes);
+
+                return View("FindRecipes", filteredRecipes);
+            }
+            else
+            {
+                TempData["RegexMatch"] = "Please enter a valid search";
+                return View("Search");
+            }
         }
         public async Task<IActionResult> SearchRecipesCategory(string search)
         {
