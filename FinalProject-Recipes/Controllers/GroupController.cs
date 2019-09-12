@@ -36,6 +36,36 @@ namespace FinalProject_Recipes.Controllers
             return View(groupList);
 
         }
+
+        public IActionResult AddGroup(AspNetUsers user)
+        {
+            Group newGroup = new Group();
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+
+            var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
+            List<string> groupIdList = new List<string>();
+            foreach (var group in groupList)
+            {
+                groupIdList.Add(group.GroupName);
+            }
+            if (groupIdList.Contains(user.Id))
+            {
+                return View();
+            }
+            else
+            {
+                newGroup.UserId = thisUser.Id;
+                newGroup.GroupName = user.Id;
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Group.Add(newGroup);
+                _context.SaveChanges();
+                return RedirectToAction("ViewGroup");
+            }
+            return View(user);
+        }
+
         public IActionResult ViewGroup(Group group)
         {
             var groupMembers = _context.Group.Where(m => m.GroupName == group.GroupName).ToList();
@@ -48,10 +78,23 @@ namespace FinalProject_Recipes.Controllers
             return View(groupList);
 
         }
-
-
-
-
+        public IActionResult RemoveGroup(AspNetUsers user)
+        {
+            Group oldGroup = new Group();
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            List<Group> groupFavorites = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
+            foreach (var item in groupFavorites)
+            {
+                if (item.GroupName == item.UserId)
+                {
+                    oldGroup = item;
+                    break;
+                }
+            }
+            _context.Group.Remove(oldGroup);
+            _context.SaveChanges();
+            return RedirectToAction("ViewGroup");
+        }
         public HttpClient GetHttpClient()
         {
             var client = new HttpClient();
