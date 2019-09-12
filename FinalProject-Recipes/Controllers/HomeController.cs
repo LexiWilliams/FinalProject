@@ -12,6 +12,7 @@ namespace FinalProject_Recipes.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
 

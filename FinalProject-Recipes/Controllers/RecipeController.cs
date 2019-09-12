@@ -36,18 +36,23 @@ namespace FinalProject_Recipes.Controllers
             var recipe = FindRecipesById(meal).Result;
             return View(recipe);
         }
-        public IActionResult Preferences()
-        {
-            return View();
-        }
+
         public async Task<IActionResult> GetRandomRecipe()
         {
-            var client = GetHttpClient();
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/random.php");
-            var recipes = await response.Content.ReadAsAsync<Recipe>();
-            var filteredRecipes = FilterRecipes(recipes);
-
-            return View("FindRecipes", filteredRecipes);
+            Recipe filteredRecipes = new Recipe();
+            bool notNull = false;
+            while (notNull == false)
+            {
+                var client = GetHttpClient();
+                var response = await client.GetAsync($"api/json/v1/{_apiKey}/random.php");
+                var recipes = await response.Content.ReadAsAsync<Recipe>();
+                filteredRecipes = FilterRecipes(recipes);
+                if (filteredRecipes.meals[0] != null)
+                {
+                    notNull = true;
+                }
+            }
+            return View("ViewRecipe", filteredRecipes);
         }
         public IActionResult FindRecipes(string search)
         {
@@ -119,94 +124,7 @@ namespace FinalProject_Recipes.Controllers
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             return viewMeal;
         }
-        public IActionResult EditPreferences(string milk, string eggs, string fish, string shellfish, string treenuts, string peanuts, string soy, string wheat, string diet, string privacy)
-        {
-            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            if (milk == "milk")
-            {
-                thisUser.Milk = true;
-            }
-            else
-            {
-                thisUser.Milk = false;
-            }
-            if (eggs == "eggs")
-            {
-                thisUser.Eggs = true;
-            }
-            else
-            {
-                thisUser.Eggs = false;
-            }
-            if (fish == "fish")
-            {
-                thisUser.Fish = true;
-            }
-            else
-            {
-                thisUser.Fish = false;
-            }
-            if (shellfish == "shellfish")
-            {
-                thisUser.Shellfish = true;
-            }
-            else
-            {
-                thisUser.Shellfish = false;
-            }
-            if (treenuts == "treenuts")
-            {
-                thisUser.Treenuts = true;
-            }
-            else
-            {
-                thisUser.Treenuts = false;
-            }
-            if (peanuts == "peanuts")
-            {
-                thisUser.Peanuts = true;
-            }
-            else
-            {
-                thisUser.Peanuts = false;
-            }
-            if (soy == "soy")
-            {
-                thisUser.Soy = true;
-            }
-            else
-            {
-                thisUser.Soy = false;
-            }
-            if (wheat == "wheat")
-            {
-                thisUser.Wheat = true;
-            }
-            else
-            {
-                thisUser.Wheat = false;
-            }
 
-            if (diet == "none")
-            {
-                thisUser.Diet = null;
-            }
-            else
-            {
-                thisUser.Diet = diet;
-            }
-            if (privacy == "private")
-            {
-                thisUser.Private = true;
-            }
-            else if (privacy == "public")
-            {
-                thisUser.Private = false;
-            }
-            _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
-            return RedirectToAction("Search");
-        }
         public List<string> AddIngredients(Meal item)
         {
             var ingredients = new List<string>();
@@ -410,7 +328,7 @@ namespace FinalProject_Recipes.Controllers
         {
             Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
             if (rgx.IsMatch(search))
-                {
+            {
 
                 var client = GetHttpClient();
                 var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");

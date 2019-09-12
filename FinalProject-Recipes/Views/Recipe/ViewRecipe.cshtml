@@ -4,7 +4,6 @@
 }
 
 @model FinalProject_Recipes.Models.Recipe
-@*<h1>Random Recipe</h1>*@
 
 
 @{
@@ -15,7 +14,10 @@
         @Html.ActionLink("Add to Favorites", "AddToFavorites", "Favorites", item)
         }
         <br />
+        if(item.strMealThumb != null)
+        {
         <img src="@item.strMealThumb" alt="@item.strMeal" />
+        }
 
         <h1><u>@item.strMeal</u></h1>
         <br />
