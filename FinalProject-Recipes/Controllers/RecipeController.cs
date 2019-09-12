@@ -413,7 +413,7 @@ namespace FinalProject_Recipes.Controllers
                 {
 
                 var client = GetHttpClient();
-                var response = await client.GetAsync($"api /json/v1/{_apiKey}/search.php?s={search}");
+                var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
                 var recipes = await response.Content.ReadAsAsync<Recipe>();
                 var filteredRecipes = FilterRecipes(recipes);
 
