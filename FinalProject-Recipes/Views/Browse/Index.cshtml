@@ -2,5 +2,22 @@
 @{
     ViewData["Title"] = "Index";
 }
+@model FinalProject_Recipes.Models.CategoryList
 
-
+@*@foreach (var category in Model.categories)
+{
+    <div class="sameLine" onMouseOver="focusDiv(this)" id="c4" onmousewheel="moveFocus(event)" onclick="playMovie(this)">
+        <table border="1" class="contentTable">
+            <tr>
+                <td align="center">
+                    <a href="@movieDetails.MovieURI">
+                        <img src=@category.strCategoryThumb alt=@category.strCategoryThumb class="imgStyle" />
+                        <a />
+                        <div class="tvShowPanel">
+                            @movieDetails.Title
+                        </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+}*@
