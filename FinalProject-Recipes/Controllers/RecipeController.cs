@@ -69,7 +69,7 @@ namespace FinalProject_Recipes.Controllers
             Recipe allRecipes = new Recipe();
             Meal[] meals = new Meal[recipes.meals.Length];
             int index = 0;
-            foreach(var item in recipes.meals)
+            foreach (var item in recipes.meals)
             {
                 var recipe = FindFavRecipesById(item.idMeal);
                 meals[index] = recipe.Result;
@@ -209,27 +209,86 @@ namespace FinalProject_Recipes.Controllers
         public List<string> AddIngredients(Meal item)
         {
             var ingredients = new List<string>();
-
-            ingredients.Add(item.strIngredient1);
-            ingredients.Add(item.strIngredient2);
-            ingredients.Add(item.strIngredient3);
-            ingredients.Add(item.strIngredient4);
-            ingredients.Add(item.strIngredient5);
-            ingredients.Add(item.strIngredient6);
-            ingredients.Add(item.strIngredient7);
-            ingredients.Add(item.strIngredient8);
-            ingredients.Add(item.strIngredient9);
-            ingredients.Add(item.strIngredient10);
-            ingredients.Add(item.strIngredient11);
-            ingredients.Add(item.strIngredient12);
-            ingredients.Add(item.strIngredient13);
-            ingredients.Add(item.strIngredient14);
-            ingredients.Add(item.strIngredient15);
-            ingredients.Add(item.strIngredient16);
-            ingredients.Add(item.strIngredient17);
-            ingredients.Add(item.strIngredient18);
-            ingredients.Add(item.strIngredient19);
-            ingredients.Add(item.strIngredient20);
+            if (item.strIngredient1 != null)
+            {
+                ingredients.Add(item.strIngredient1.ToLower());
+            }
+            if (item.strIngredient2 != null)
+            {
+                ingredients.Add(item.strIngredient2.ToLower());
+            }
+            if (item.strIngredient3 != null)
+            {
+                ingredients.Add(item.strIngredient3.ToLower());
+            }
+            if (item.strIngredient4 != null)
+            {
+                ingredients.Add(item.strIngredient4.ToLower());
+            }
+            if (item.strIngredient5 != null)
+            {
+                ingredients.Add(item.strIngredient5.ToLower());
+            }
+            if (item.strIngredient6 != null)
+            {
+                ingredients.Add(item.strIngredient6.ToLower());
+            }
+            if (item.strIngredient7 != null)
+            {
+                ingredients.Add(item.strIngredient7.ToLower());
+            }
+            if (item.strIngredient8 != null)
+            {
+                ingredients.Add(item.strIngredient8.ToLower());
+            }
+            if (item.strIngredient9 != null)
+            {
+                ingredients.Add(item.strIngredient9.ToLower());
+            }
+            if (item.strIngredient10 != null)
+            {
+                ingredients.Add(item.strIngredient10.ToLower());
+            }
+            if (item.strIngredient11 != null)
+            {
+                ingredients.Add(item.strIngredient11.ToLower());
+            }
+            if (item.strIngredient12 != null)
+            {
+                ingredients.Add(item.strIngredient12.ToLower());
+            }
+            if (item.strIngredient13 != null)
+            {
+                ingredients.Add(item.strIngredient13.ToLower());
+            }
+            if (item.strIngredient14 != null)
+            {
+                ingredients.Add(item.strIngredient14.ToLower());
+            }
+            if (item.strIngredient15 != null)
+            {
+                ingredients.Add(item.strIngredient15.ToLower());
+            }
+            if (item.strIngredient16 != null)
+            {
+                ingredients.Add(item.strIngredient16.ToLower());
+            }
+            if (item.strIngredient17 != null)
+            {
+                ingredients.Add(item.strIngredient17.ToLower());
+            }
+            if (item.strIngredient18 != null)
+            {
+                ingredients.Add(item.strIngredient18.ToLower());
+            }
+            if (item.strIngredient19 != null)
+            {
+                ingredients.Add(item.strIngredient19.ToLower());
+            }
+            if (item.strIngredient20 != null)
+            {
+                ingredients.Add(item.strIngredient20.ToLower());
+            }
             return ingredients;
         }
         public List<DietsAndRestriction> GetDiet()
@@ -277,7 +336,7 @@ namespace FinalProject_Recipes.Controllers
             }
             else
             {
-               List<DietsAndRestriction> none = new List<DietsAndRestriction>();
+                List<DietsAndRestriction> none = new List<DietsAndRestriction>();
                 return none;
             }
         }
@@ -381,7 +440,7 @@ namespace FinalProject_Recipes.Controllers
 
                     foreach (var name in restrictions)
                     {
-                        var ingred = name.Id;
+                        var ingred = name.Id.ToLower();
 
                         if (ingredients.Contains(ingred))
                         {
@@ -413,11 +472,11 @@ namespace FinalProject_Recipes.Controllers
                 {
                     bool isBad = false;
                     var ingredients = AddIngredients(item);
-                    var instructions = item.strInstructions;
+                    var instructions = item.strInstructions.ToLower();
 
                     foreach (var name in restrictions)
                     {
-                        var ingred = name.Id;
+                        var ingred = name.Id.ToLower();
 
                         if (ingredients.Contains(ingred))
                         {
@@ -426,7 +485,7 @@ namespace FinalProject_Recipes.Controllers
                     }
                     foreach (var name in restrictions)
                     {
-                        var ingred = name.Id;
+                        var ingred = name.Id.ToLower();
 
                         if (instructions.Contains(ingred))
                         {
