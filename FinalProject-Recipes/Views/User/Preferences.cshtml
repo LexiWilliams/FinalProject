@@ -2,65 +2,229 @@
 @{
     ViewData["Title"] = "Preferences";
 }
+@model FinalProject_Recipes.Models.AspNetUsers
 
 <h1>Preferences</h1>
 
-<form action="/Recipe/EditPreferences" method="post">
+<form action="/User/EditPreferences" method="post">
     <h2>Privacy</h2>
-    <div>
-
-        <select name="privacy">
-            <option value="public">Public Profile</option>
-            <option value="private">Private Profile</option>
-        </select>
-        <br />
-    </div>
+    @if (Model.Private == true)
+    {
+        <div>
+            <select name="privacy">
+                <option value="public">Public Profile</option>
+                <option value="private" selected>Private Profile</option>
+            </select>
+            <br />
+        </div>
+    }
+    else
+    {
+        <div>
+            <select name="privacy">
+                <option value="public" selected>Public Profile</option>
+                <option value="private">Private Profile</option>
+            </select>
+            <br />
+        </div>
+    }
     <h2>Restrictions</h2>
-    <div>
+    @if (Model.Milk == true)
+    {
+        <div>
+            <input type="checkbox" id="milk" name="milk" value="milk" checked />
+            <label for="milk">Milk </label>
+        </div>
+    }
+    else
+    {
         <input type="checkbox" id="milk" name="milk" value="milk" />
         <label for="milk">Milk </label>
-    </div>
-    <div>
-        <input type="checkbox" id="eggs" name="eggs" value="eggs" />
-        <label for="eggs">Eggs </label>
-    </div>
-    <div>
-        <input type="checkbox" id="fish" name="fish" value="fish" />
-        <label for="fish">Fish </label>
-    </div>
-    <div>
-        <input type="checkbox" id="shellfish" name="shellfish" value="shellfish" />
-        <label for="shellfish">Shellfish </label>
-    </div>
-    <div>
-        <input type="checkbox" id="treenuts" name="treenuts" value="treenuts" />
-        <label for="treenuts">Treenuts </label>
-    </div>
-    <div>
-        <input type="checkbox" id="peanuts" name="peanuts" value="peanuts" />
-        <label for="peanuts">Peanuts </label>
-    </div>
-    <div>
-        <input type="checkbox" id="wheat" name="wheat" value="wheat" />
-        <label for="wheat">Wheat</label>
-    </div>
-    <div>
-        <input type="checkbox" id="soy" name="soy" value="soy" />
-        <label for="soy">Soy</label>
-    </div>
+    }
+    @if (Model.Eggs == true)
+    {
+        <div>
+            <input type="checkbox" id="eggs" name="eggs" value="eggs" checked />
+            <label for="eggs">Eggs </label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="eggs" name="eggs" value="eggs" />
+            <label for="eggs">Eggs </label>
+        </div>
+    }
+    @if (Model.Fish == true)
+    {
+        <div>
+            <input type="checkbox" id="fish" name="fish" value="fish" checked />
+            <label for="fish">Fish </label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="fish" name="fish" value="fish" />
+            <label for="fish">Fish </label>
+        </div>
+    }
+    @if (Model.Shellfish == true)
+    {
+        <div>
+            <input type="checkbox" id="shellfish" name="shellfish" value="shellfish" checked />
+            <label for="shellfish">Shellfish </label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="shellfish" name="shellfish" value="shellfish" />
+            <label for="shellfish">Shellfish </label>
+        </div>
+    }
+    @if (Model.Treenuts == true)
+    {
+        <div>
+            <input type="checkbox" id="treenuts" name="treenuts" value="treenuts" checked />
+            <label for="treenuts">Treenuts </label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="treenuts" name="treenuts" value="treenuts" />
+            <label for="treenuts">Treenuts </label>
+        </div>
+    }
+    @if (Model.Peanuts == true)
+    {
+        <div>
+            <input type="checkbox" id="peanuts" name="peanuts" value="peanuts" checked />
+            <label for="peanuts">Peanuts </label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="peanuts" name="peanuts" value="peanuts" />
+            <label for="peanuts">Peanuts </label>
+        </div>
+    }
+    @if (Model.Wheat == true)
+    {
+        <div>
+            <input type="checkbox" id="wheat" name="wheat" value="wheat" checked />
+            <label for="wheat">Wheat</label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="wheat" name="wheat" value="wheat" />
+            <label for="wheat">Wheat</label>
+        </div>
+    }
+    @if (Model.Soy == true)
+    {
+        <div>
+            <input type="checkbox" id="soy" name="soy" value="soy" checked />
+            <label for="soy">Soy</label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="checkbox" id="soy" name="soy" value="soy" />
+            <label for="soy">Soy</label>
+        </div>
+    }
     <h2>Diet</h2>
-    <select name="diet">
-        <option value="none">None</option>
-        <option value="Vegan">Vegan</option>
-        <option value="Vegetarian">Vegetarian</option>
-        <option value="Pescatarian">Pescatarian</option>
-        <option value="Keto">Keto</option>
-        <option value="Paleo">Paleo</option>
-        <option value="Gluten Free">Gluten Free</option>
-    </select>
+    @if (Model.Diet == "Gluten Free")
+    {
+        <select name="diet">
+            <option value="none">None</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Pescatarian">Pescatarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Gluten Free" selected>Gluten Free</option>
+        </select>
+    }
+    else if (Model.Diet == "Vegan")
+    {
+        <select name="diet">
+            <option value="none">None</option>
+            <option value="Vegan" selected>Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Pescatarian">Pescatarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Gluten Free">Gluten Free</option>
+        </select>
+    }
+    else if (Model.Diet == "Vegetarian")
+    {
+        <select name="diet">
+            <option value="none">None</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian" selected>Vegetarian</option>
+            <option value="Pescatarian">Pescatarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Gluten Free">Gluten Free</option>
+        </select>
+    }
+    else if (Model.Diet == "Pescatarian")
+    {
+        <select name="diet">
+            <option value="none">None</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Pescatarian" selected>Pescatarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Gluten Free">Gluten Free</option>
+        </select>
+    }
+    else if (Model.Diet == "Keto")
+    {
+        <select name="diet">
+            <option value="none">None</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Pescatarian">Pescatarian</option>
+            <option value="Keto" selected>Keto</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Gluten Free">Gluten Free</option>
+        </select>
+    }
+    else if (Model.Diet == "Paleo")
+    {
+        <select name="diet">
+            <option value="none">None</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Pescatarian">Pescatarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Paleo" selected>Paleo</option>
+            <option value="Gluten Free">Gluten Free</option>
+        </select>
+    }
+    else
+    {
+        <select name="diet">
+            <option value="none" selected>None</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Pescatarian">Pescatarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Gluten Free">Gluten Free</option>
+        </select>
+    }
     <br />
     <br />
     <input type="submit" value="Edit Preferences" />
-
-
 </form>
