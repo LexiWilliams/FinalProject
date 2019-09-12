@@ -116,6 +116,14 @@ namespace FinalProject_Recipes.Controllers
             var meal = await response.Content.ReadAsAsync<Recipe>();
             return View("ViewRecipes", meal);
         }
+        public async Task<IActionResult> Misc()
+        {
+            var client = GetHttpClient();
+
+            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c=Miscellaneous");
+            var meal = await response.Content.ReadAsAsync<Recipe>();
+            return View("ViewRecipes", meal);
+        }
 
     }
 }
