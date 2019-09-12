@@ -24,7 +24,7 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.UserName)</a>
+               @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th></th>
         </tr>
@@ -32,15 +32,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                    @Html.ActionLink("Add Friend", "AddFriend", "Friend", item)
+            @if (item.Private == false || item.Private == null)
 
-                </td>
+        {
+                <tr>
+                    <td>
+                         @Html.DisplayFor(modelItem => item.UserName)
+                         @Html.ActionLink("Add Friend", "AddFriend", "Friend", item)
 
-
-            </tr>
+                   </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

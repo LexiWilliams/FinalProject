@@ -26,23 +26,11 @@ namespace FinalProject_Recipes.Controllers
 
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             var user = from s in _context.AspNetUsers select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 user = user.Where(s => s.UserName.Contains(searchString));
 
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    user = user.OrderByDescending(s => s.UserName);
-                    break;
-
-                default:
-                    user = user.OrderBy(s => s.UserName);
-                    break;
             }
 
             return View(await user.AsNoTracking().ToListAsync());
