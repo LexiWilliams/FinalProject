@@ -21,40 +21,45 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Spice of Life</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eat This Not That</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    
-                        <nav>
-                            <ul>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                                <li>
 
-                                    <a asp-area="" asp-controller="Browse" asp-action="Index">Browse</a>
-                                    <ul>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Beef">Beef</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Breakfast">Breakfast</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Chicken">Chicken</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Goat">Goat</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Lamb">Lamb</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Pasta">Pasta</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Pork">Pork</a></li>
-                                        <li><a asp-area="" asp-controller="Browse" asp-action="Seafood">Seafood</a></li>
+                    <nav>
+                        <ul>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li>
 
-                                    </ul>
-                                </li>
-                                <li><a asp-area="" asp-controller="Recipe" asp-action="Search">Search Recipes</a>
-                                <li><a asp-area="" asp-controller="Favorites" asp-action="DisplayFavorite">Favorites</a>
-                                <li><a asp-area="" asp-controller="Recipe" asp-action="Preferences">Preferences</a>
-                                <li><a asp-area="" asp-controller="Friend" asp-action="ViewFriends">Friends</a>
-                            </ul>
+                                <a asp-area="" asp-controller="Browse" asp-action="Index">Browse</a>
+                                <ul>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Beef">Beef</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Breakfast">Breakfast</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Chicken">Chicken</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Goat">Goat</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Lamb">Lamb</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Pasta">Pasta</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Pork">Pork</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Seafood">Seafood</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Seafood">Side</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Seafood">Starter</a></li>
+                                    <li><a asp-area="" asp-controller="Browse" asp-action="Misc">Misc</a></li>
+                                    <li><a asp-area="" asp-controller="Recipe" asp-action="GetRandomRecipe">Random</a></li>
 
-                        </nav>
+                                </ul>
+                            </li>
+                            <li><a asp-area="" asp-controller="Recipe" asp-action="Search">Search Recipes</a>
+                            <li><a asp-area="" asp-controller="Favorites" asp-action="DisplayFavorite">Favorites</a>
+                            <li><a asp-area="" asp-controller="Recipe" asp-action="Preferences">Preferences</a>
+                            <li><a asp-area="" asp-controller="Friend" asp-action="ViewFriends">Friends</a>
+                        </ul>
+
+                    </nav>
     </header>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -63,8 +68,9 @@
     </div>
 
     <footer class="border-top footer text-muted">
+        <link rel="stylesheet" href="~/css/site.css" />
         <div class="container">
-            &copy; 2019 - Food'R'Us - @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+            &copy; 2019 - Eat This Not That  @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
         </div>
     </footer>
 
