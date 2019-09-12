@@ -68,12 +68,24 @@ namespace FinalProject_Recipes.Controllers
 
         public IActionResult AddFriend(AspNetUsers user)
         {
-
             Friends newFriend = new Friends();
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
 
-            newFriend.UserId = thisUser.Id;
-            newFriend.FriendId = user.Id;
+            var favList = _context.Friends.Where(u => u.UserId == thisUser.Id).ToList();
+            List<string> friendIdList = new List<string>();
+            foreach (var friend in favList)
+            {
+                friendIdList.Add(friend.FriendId);
+            }
+            if (friendIdList.Contains(user.Id))
+            {
+                return View();
+            }
+            else
+            {
+                newFriend.UserId = thisUser.Id;
+                newFriend.FriendId = user.Id;
+            }
             if (ModelState.IsValid)
             {
                 _context.Friends.Add(newFriend);
@@ -82,6 +94,7 @@ namespace FinalProject_Recipes.Controllers
             }
             return View(user);
         }
+
 
         public IActionResult RemoveFriend(AspNetUsers friend)
         {
