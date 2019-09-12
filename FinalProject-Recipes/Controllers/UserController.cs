@@ -27,7 +27,8 @@ namespace FinalProject_Recipes.Controllers
         }
         public IActionResult Preferences()
         {
-            return View();
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            return View(thisUser);
         }
         public IActionResult EditPreferences(string milk, string eggs, string fish, string shellfish, string treenuts, string peanuts, string soy, string wheat, string diet, string privacy)
         {
@@ -115,7 +116,7 @@ namespace FinalProject_Recipes.Controllers
             }
             _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
-            return RedirectToAction("Search");
+            return RedirectToAction("Search", "Recipe");
         }
     }
 }
