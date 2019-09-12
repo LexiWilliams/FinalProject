@@ -29,7 +29,27 @@ namespace FinalProject_Recipes.Controllers
             return View();
         }
 
-        
+        public IActionResult DisplayGroups()
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
+            return View(groupList);
+
+        }
+        public IActionResult ViewGroup(Group group)
+        {
+            var groupMembers = _context.Group.Where(m => m.GroupName == group.GroupName).ToList();
+            List<AspNetUsers> groupList = new List<AspNetUsers>();
+            foreach (var member in groupMembers)
+            {
+                var memberInfo = _context.AspNetUsers.Where(u => u.Id == member.UserId).First();
+                groupList.Add(memberInfo);
+            }
+            return View(groupList);
+
+        }
+
+
 
 
         public HttpClient GetHttpClient()
