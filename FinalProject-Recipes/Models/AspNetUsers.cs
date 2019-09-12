@@ -14,6 +14,7 @@ namespace FinalProject_Recipes.Models
             FavoriteRecipes = new HashSet<FavoriteRecipes>();
             FriendsFriend = new HashSet<Friends>();
             FriendsUser = new HashSet<Friends>();
+            GroupNavigation = new HashSet<Group>();
         }
 
         public string Id { get; set; }
@@ -43,6 +44,7 @@ namespace FinalProject_Recipes.Models
         public bool? Soy { get; set; }
         public bool? Private { get; set; }
 
+        public virtual Diets DietNavigation { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
@@ -50,5 +52,6 @@ namespace FinalProject_Recipes.Models
         public virtual ICollection<FavoriteRecipes> FavoriteRecipes { get; set; }
         public virtual ICollection<Friends> FriendsFriend { get; set; }
         public virtual ICollection<Friends> FriendsUser { get; set; }
+        public virtual ICollection<Group> GroupNavigation { get; set; }
     }
 }
