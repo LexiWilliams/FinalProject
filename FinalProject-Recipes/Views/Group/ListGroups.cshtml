@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "ListGroups";
+    TempData.Keep();
+}
+
+<h1>List Groups</h1>
+
+<table class="table-borderless">
+    @foreach (var item in (IEnumerable<string>)TempData["groupNames"])
+    {
+        <tr>
+            <td>@item</td>
+            <td>@Html.ActionLink("Add Group","AddExistingGroup","Group",item)</td>
+        </tr>
+    }
+
+</table>
+
+<form action="/Group/AddGroup" method="post">
+    <input type="text" name="name" value="" />
+    <input type="submit"  value="Add Group" />
+</form>
+
+
