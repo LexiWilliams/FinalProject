@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FinalProject_Recipes.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace FinalProject_Recipes.Controllers
 {
@@ -12,7 +13,13 @@ namespace FinalProject_Recipes.Controllers
     {
         public IActionResult Index()
         {
-            
+            if (User.Identity.IsAuthenticated)
+            {
+                if(User.Identity.Name != null)
+                {
+                    return RedirectToAction("Preferences", "User");
+                }
+            }
             return View();
         }
 
