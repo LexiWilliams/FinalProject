@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "ViewFriends";
+}
+
+@model IEnumerable<FinalProject_Recipes.Models.AspNetUsers>
+
+<h1>View Friends</h1>
+@Html.ActionLink("Add A Friend", "Index", "Friend")
+<table class="table">
+    <tr>
+        <th>Friend</th>
+        <th>Diet</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.Diet</td>
+            <td>@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>
+
+    
+            <td>@Html.ActionLink("Remove From List", "RemoveFriend", "Friend", item)</td>
+        </tr>
+    }
+</table>
