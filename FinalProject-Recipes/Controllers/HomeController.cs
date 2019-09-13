@@ -17,12 +17,11 @@ namespace FinalProject_Recipes.Controllers
             {
                 if(User.Identity.Name != null)
                 {
-                    return RedirectToAction("Preferences", "User");
+                    return RedirectToAction("UserPage", "User");
                 }
             }
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
