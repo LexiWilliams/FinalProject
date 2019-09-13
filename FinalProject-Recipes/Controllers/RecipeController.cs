@@ -36,6 +36,7 @@ namespace FinalProject_Recipes.Controllers
             var recipe = FindRecipesById(meal).Result;
             return View(recipe);
         }
+        
 
         public async Task<IActionResult> GetRandomRecipe()
         {
