@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "UserPage";
+}
+
+@model FinalProject_Recipes.Models.AspNetUsers
+
+<h1>User Profile</h1>
+
+@Html.ActionLink("Edit Preferences", "Preferences", "User")
+    <h2>Privacy</h2>
+    @if (Model.Private == true)
+    {
+        <p>Privacy: Private Profile</p>
+    }
+    else
+    {
+        <p>Privacy: Public Profile</p>
+    }
+    <h2>Restrictions</h2>
+    @if (Model.Milk == true)
+    {
+        <p>Milk: restricted</p>
+    }
+    else
+    {
+        <p>Milk: not restricted</p>
+    }
+    @if (Model.Eggs == true)
+    {
+        <p>Eggs: restricted</p>
+    }
+    else
+    {
+        <p>Eggs: not restricted</p>
+    }
+    @if (Model.Fish == true)
+    {
+        <p>Fish: restricted</p>
+    }
+    else
+    {
+        <p>Fish: not restricted</p>
+    }
+    @if (Model.Shellfish == true)
+    {
+        <p>Shellfish: restricted</p>
+    }
+    else
+    {
+        <p>Shellfish: not restricted</p>
+    }
+    @if (Model.Treenuts == true)
+    {
+        <p>Treenuts: restricted</p>
+    }
+    else
+    {
+        <p>Treenuts: not restricted</p>
+    }
+    @if (Model.Peanuts == true)
+    {
+        <p>Peanuts: restricted</p>
+    }
+    else
+    {
+        <p>Peanuts: not restricted</p>
+    }
+    @if (Model.Wheat == true)
+    {
+        <p>Wheat: restricted</p>
+    }
+    else
+    {
+        <p>Wheat: not restricted</p>
+    }
+    @if (Model.Soy == true)
+    {
+        <p>Soy: restricted</p>
+    }
+    else
+    {
+        <p>Soy: not restricted</p>
+    }
+    <h2>Diet</h2>
+    @if (Model.Diet == "Gluten Free")
+    {
+        <p>Diet: Gluten Free</p>
+    }
+    else if (Model.Diet == "Vegan")
+    {
+        <p>Diet: Vegan</p>
+    }
+    else if (Model.Diet == "Vegetarian")
+    {
+        <p>Diet: Vegetarian</p>
+    }
+    else if (Model.Diet == "Pescatarian")
+    {
+        <p>Diet: Pescatarian</p>
+    }
+    else if (Model.Diet == "Keto")
+    {
+        <p>Diet: Keto</p>
+    }
+    else if (Model.Diet == "Paleo")
+    {
+        <p>Diet: Paleo</p>
+    }
+    else
+    {
+        <p>Diet: none</p>
+    }
+ 
+

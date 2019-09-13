@@ -25,6 +25,11 @@ namespace FinalProject_Recipes.Controllers
         {
             return View();
         }
+        public IActionResult UserPage()
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            return View(thisUser);
+        }
         public IActionResult Preferences()
         {
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
@@ -116,7 +121,7 @@ namespace FinalProject_Recipes.Controllers
             }
             _context.Entry(thisUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
-            return RedirectToAction("Search", "Recipe");
+            return RedirectToAction("Userpage");
         }
     }
 }
