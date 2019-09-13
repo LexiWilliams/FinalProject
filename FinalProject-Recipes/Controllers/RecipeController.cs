@@ -55,9 +55,9 @@ namespace FinalProject_Recipes.Controllers
             }
             return View("ViewRecipe", filteredRecipes);
         }
-        public IActionResult FindRecipes(string search)
+        public IActionResult FindRecipes(Recipe recipes)
         {
-            return View(search);
+            return View(recipes);
         }
         // for ingredients
         public async Task<IActionResult> SearchRecipesIngredients(string search)
