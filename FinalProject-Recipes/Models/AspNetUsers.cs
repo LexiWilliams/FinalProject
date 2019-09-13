@@ -44,7 +44,6 @@ namespace FinalProject_Recipes.Models
         public bool? Soy { get; set; }
         public bool? Private { get; set; }
 
-        public virtual Diets DietNavigation { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }

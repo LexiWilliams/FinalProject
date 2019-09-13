@@ -8,6 +8,8 @@ namespace FinalProject_Recipes.Models
         public int Id { get; set; }
         public string UserId { get; set; }
         public string RecipeId { get; set; }
+        public string RecipeName { get; set; }
+        public string RecipeImage { get; set; }
         public int? Rating { get; set; }
 
         public virtual AspNetUsers User { get; set; }
