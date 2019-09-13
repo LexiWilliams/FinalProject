@@ -1,16 +1,16 @@
 ﻿
 @{
     ViewData["Title"] = "ListGroups";
-    TempData.Keep();
+    
 }
-
+@model IEnumerable<FinalProject_Recipes.Models.Group>
 <h1>List Groups</h1>
 
 <table class="table-borderless">
-    @foreach (var item in (IEnumerable<string>)TempData["groupNames"])
+    @foreach (var item in Model)
     {
         <tr>
-            <td>@item</td>
+            <td>@item.GroupName</td>
             <td>@Html.ActionLink("Add Group","AddExistingGroup","Group",item)</td>
         </tr>
     }

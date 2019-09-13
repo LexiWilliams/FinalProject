@@ -35,9 +35,14 @@ namespace FinalProject_Recipes.Controllers
                     groupNames.Add(item.GroupName);
                 }
             }
-
-            TempData["groupNames"] = groupNames;
-            return View();
+            List<Group> edittedList = new List<Group>();
+            foreach (var name in groupNames)
+            {
+                Group findGroup = _context.Group.Where(u => u.GroupName == name).First();
+                edittedList.Add(findGroup);
+            }
+            //TempData["groupNames"] = groupNames;
+            return View(edittedList);
         }
 
         public IActionResult DisplayGroups()
@@ -74,6 +79,19 @@ namespace FinalProject_Recipes.Controllers
             
             return RedirectToAction("DisplayGroups");
         }
+        public IActionResult AddExistingGroup(Group name)
+        {
+            Group newGroup = new Group();
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+
+            var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
+            newGroup.GroupName = name.GroupName;
+            newGroup.UserId = thisUser.Id;
+            _context.Group.Add(newGroup);
+            _context.SaveChanges();
+            return RedirectToAction("DisplayGroups");
+        }
+
 
         public IActionResult RemoveGroup(AspNetUsers user)
         {
