@@ -4,7 +4,7 @@
 }
 @model FinalProject_Recipes.Models.Recipe
 
-<table class="table-dark">
+@*<table class="table-dark">
     <tr>
         <th><b><u>Recipes</u></b></th>
     </tr>
@@ -16,5 +16,38 @@
             <td>@Html.ActionLink("View Recipe", "ViewRecipe","Recipe", item)</td>
         </tr>
     }
-</table>
+</table>*@
+    <div class="row">
+        @foreach (var item in Model.meals)
+        {
+            <div class="column">
+                <div class="border-style">
+                    <div>
+                        @item.strMeal
+                    </div>
+                    <div>
+                        @Html.ActionLink("View Recipe", "ViewRecipe", item)
+                    </div>
+                    <div>
+                        <img src="@item.strMealThumb" alt="@item.strMeal" width="200" height="150" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <style>
+        .border-style {
+            color: black;
+            padding-left: 10px;
+            padding-right: 10px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+            border: solid;
+            border-color: white;
+            border-width: thick;
+            margin: 15px;
+        }
+    </style>
 

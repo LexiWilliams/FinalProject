@@ -8,15 +8,17 @@
 <h1>Display Favorite</h1>
 
 <table class="table-dark" style="border-spacing: 15px 2px; border-collapse: separate; border-color: white;">
-    <th><b><u>Favorites</u></b></th>
+    <tr>
+        <th><b><u>Favorites</u></b></th>
+    </tr>
     @{ foreach (var recipe in Model)
         {
-        <tr>
-            <td>@recipe.strMeal</td>
-            <td><img src="@recipe.strMealThumb" alt="@recipe.strMeal" width="100" height="100" /></td>
-            <td>@Html.ActionLink("View Recipe", "ViewRecipe","Recipe", recipe)</td>
-            
-        </tr>
+            <tr>
+                <td>@recipe.strMeal</td>
+                <td><img src="@recipe.strMealThumb" alt="@recipe.strMeal" width="100" height="100" /></td>
+                <td>@Html.ActionLink("View Recipe", "ViewRecipe", "Recipe", recipe)</td>
+
+            </tr>
         }
     }
 
