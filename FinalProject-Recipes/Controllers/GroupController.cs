@@ -24,6 +24,13 @@ namespace FinalProject_Recipes.Controllers
             _apiKey = _configuration.GetSection("AppConfiguration")["RecipeAPIKey"];
 
         }
+        public IActionResult DisplayGroups()
+        {
+            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
+            var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
+            return View(groupList);
+
+        }
         public IActionResult ListGroups()
         {
             var groupList = _context.Group.ToList();
@@ -41,17 +48,9 @@ namespace FinalProject_Recipes.Controllers
                 Group findGroup = _context.Group.Where(u => u.GroupName == name).First();
                 edittedList.Add(findGroup);
             }
-            //TempData["groupNames"] = groupNames;
             return View(edittedList);
         }
 
-        public IActionResult DisplayGroups()
-        {
-            AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
-            var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
-            return View(groupList);
-
-        }
 
         public IActionResult ViewGroup(Group group)
         {
@@ -66,18 +65,36 @@ namespace FinalProject_Recipes.Controllers
 
         }
 
-        public IActionResult AddGroup(string name)
+        public IActionResult AddGroup(string groupName)
         {
             Group newGroup = new Group();
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
 
             var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
-            newGroup.GroupName = name;
-            newGroup.UserId = thisUser.Id;
-            _context.Group.Add(newGroup);
-            _context.SaveChanges();
+
+            List<string> groupNames = new List<string>();
+            foreach (var item in groupList)
+            {
+                    groupNames.Add(item.GroupName);
+            }
+            if (groupNames.Contains(groupName))
+            {
+                ViewData["Name"] = groupName;
+                return RedirectToAction("ListGroups");
+            }
+            else
+            {
+                newGroup.GroupName = groupName;
+                newGroup.UserId = thisUser.Id;
+                _context.Group.Add(newGroup);
+                _context.SaveChanges();
+
+                return RedirectToAction("DisplayGroups");
+
+            }
+
+
             
-            return RedirectToAction("DisplayGroups");
         }
         public IActionResult AddExistingGroup(Group name)
         {
@@ -85,11 +102,26 @@ namespace FinalProject_Recipes.Controllers
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
 
             var groupList = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
-            newGroup.GroupName = name.GroupName;
-            newGroup.UserId = thisUser.Id;
-            _context.Group.Add(newGroup);
-            _context.SaveChanges();
-            return RedirectToAction("DisplayGroups");
+
+            List<string> groupNames = new List<string>();
+            foreach (var item in groupList)
+            {
+                groupNames.Add(item.GroupName);
+            }
+            if (groupNames.Contains(name.GroupName))
+            {
+                ViewData["Name"] = name.GroupName;
+                return RedirectToAction("ListGroups");
+            }
+            else
+            {
+                newGroup.GroupName = name.GroupName;
+                newGroup.UserId = thisUser.Id;
+                _context.Group.Add(newGroup);
+                _context.SaveChanges();
+                return RedirectToAction("DisplayGroups");
+            }
+            
         }
 
 
