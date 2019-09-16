@@ -5,9 +5,9 @@
 
 @model IEnumerable<FinalProject_Recipes.Models.FavoriteRecipes>
 
-<h1>Display Favorite</h1>
+<h1 class="text-center">Display Favorite</h1>
 
-<table class="table-dark" style="border-spacing: 15px 2px; border-collapse: separate; border-color: white;">
+@*<table class="table-dark" style="border-spacing: 15px 2px; border-collapse: separate; border-color: white;">
     <tr>
         <th><b><u>Favorites</u></b></th>
     </tr>
@@ -23,5 +23,41 @@
         }
     }
 
-    @*sending form to somewhere*@
-</table>
+    
+</table>*@
+<div class="row">
+    @foreach (var recipe in Model)
+    {
+        <div class="column">
+            <div class="border-style">
+                <div>
+                    @recipe.RecipeName
+                </div>
+                <div>
+                    @Html.ActionLink("View Recipe", "ViewRecipe", "Favorites", recipe)
+                </div>
+                <div>
+                    <img src="@recipe.RecipeImage" alt="@recipe.RecipeName" width="200" height="150" />
+                </div>
+                <div>
+                    @Html.ActionLink("Remove From List", "RemoveFavorite", "Favorites", recipe)
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .border-style {
+        color: black;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: medium;
+        border: solid;
+        border-color: white;
+        border-width: thick;
+        margin: 15px;
+    }
+</style>
