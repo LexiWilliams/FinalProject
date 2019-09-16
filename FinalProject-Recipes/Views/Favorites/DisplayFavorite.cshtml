@@ -5,7 +5,8 @@
 
 @model IEnumerable<FinalProject_Recipes.Models.FavoriteRecipes>
 
-<h1 class="text-center">Display Favorite</h1>
+<h1 class="text-center" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white, 
+    -1px 1px 0 white, 1px 1px 0 white">Favorite Recipes</h1>
 
 @*<table class="table-dark" style="border-spacing: 15px 2px; border-collapse: separate; border-color: white;">
     <tr>
@@ -25,19 +26,20 @@
 
     
 </table>*@
-<div class="row">
+<div class="row" style="align-content:center;margin-left:120px;margin-right:100px">
     @foreach (var recipe in Model)
     {
-        <div class="column">
+        <div style="text-align:center">
             <div class="border-style">
-                <div>
+                <div style="font-family:Bahnschrift;font-size:large;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white,
+    -1px 1px 0 white, 1px 1px 0 white">
                     @recipe.RecipeName
                 </div>
                 <div>
-                    @Html.ActionLink("View Recipe", "ViewRecipe", "Favorites", recipe)
-                </div>
-                <div>
-                    <img src="@recipe.RecipeImage" alt="@recipe.RecipeName" width="200" height="150" />
+                    <a title=" @recipe.RecipeName" href='@Url.Action("ViewRecipe", "Favorites", recipe)'>
+                        <img src='@Url.Content(@recipe.RecipeImage)' width="200" style="margin:15px; border:solid;border-color:white;
+                            border-width:10px" />
+                    </a>
                 </div>
                 <div>
                     @Html.ActionLink("Remove From List", "RemoveFavorite", "Favorites", recipe)
@@ -49,14 +51,13 @@
 
 <style>
     .border-style {
-        color: black;
         padding-left: 10px;
         padding-right: 10px;
         text-align: center;
         font-family: 'Times New Roman', Times, serif;
         font-size: medium;
         border: solid;
-        border-color: white;
+        border-color: transparent;
         border-width: thick;
         margin: 15px;
     }
