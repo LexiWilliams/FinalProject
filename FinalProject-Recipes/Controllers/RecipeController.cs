@@ -22,11 +22,13 @@ namespace FinalProject_Recipes.Controllers
             _configuration = configuration;
             _apiKey = _configuration.GetSection("AppConfiguration")["RecipeAPIKey"];
         }
-        public IActionResult Index()
-        {
-            var meal = GetRandomRecipe().Result;
-            return View(meal);
-        }
+        // We aren't using the index. We can delete this and the view
+
+        //public IActionResult Index()
+        //{
+        //    var meal = GetRandomRecipe().Result;
+        //    return View(meal);
+        //}
         public IActionResult Search()
         {
             return View();
@@ -44,7 +46,7 @@ namespace FinalProject_Recipes.Controllers
             bool notNull = false;
             while (notNull == false)
             {
-                var client = GetHttpClient();
+                var client = RecipeMethods.GetHttpClient();
                 var response = await client.GetAsync($"api/json/v1/{_apiKey}/random.php");
                 var recipes = await response.Content.ReadAsAsync<Recipe>();
                 filteredRecipes = FilterRecipes(recipes);
@@ -59,17 +61,64 @@ namespace FinalProject_Recipes.Controllers
         {
             return View(recipes);
         }
+        public async Task<IActionResult> SearchRecipesTitle(string search)
+        {
+            Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
+            if (rgx.IsMatch(search))
+            {
+
+                var client = RecipeMethods.GetHttpClient();
+                var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
+                var recipes = await response.Content.ReadAsAsync<Recipe>();
+                if (recipes.meals == null)
+                {
+                    TempData["RegexMatch"] = "Please enter a valid search";
+                    return View("search");
+                }
+                else
+                {
+                    var filteredRecipes = FilterRecipes(recipes);
+
+                    return View("FindRecipes", filteredRecipes);
+                }
+
+            }
+            else
+            {
+                TempData["RegexMatch"] = "Please enter a valid search";
+                return View("Search");
+            }
+        }
         // for ingredients
         public async Task<IActionResult> SearchRecipesIngredients(string search)
         {
-            var client = GetHttpClient();
+            Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
+            if (rgx.IsMatch(search))
+            {
+                var client = RecipeMethods.GetHttpClient();
 
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?i={search}");
-            var recipes = await response.Content.ReadAsAsync<Recipe>();
-            var actualRecipes = GetRecipesById(recipes);
-            var filteredRecipes = FilterRecipes(actualRecipes);
+                var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?i={search}");
+                var recipes = await response.Content.ReadAsAsync<Recipe>();
+                if (recipes.meals == null)
+                {
+                    TempData["RegexMatch"] = "Please enter a valid search";
+                    return View("search");
 
-            return View("FindRecipes", filteredRecipes);
+                }
+                else
+                {
+                    var actualRecipes = GetRecipesById(recipes);
+                    var filteredRecipes = FilterRecipes(actualRecipes);
+
+                    return View("FindRecipes", filteredRecipes);
+
+                }
+            }
+            else
+            {
+                TempData["RegexMatch"] = "Please enter a valid search";
+                return View("search");
+            }
         }
         public Recipe GetRecipesById(Recipe recipes)
         {
@@ -87,7 +136,7 @@ namespace FinalProject_Recipes.Controllers
         }
         public async Task<Meal> FindFavRecipesById(string mealId)
         {
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={mealId}");
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             var meal = viewMeal.meals[0];
@@ -96,23 +145,17 @@ namespace FinalProject_Recipes.Controllers
         // for Area
         public async Task<IActionResult> SearchRecipesArea(string search)
         {
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?a={search}");
             var recipes = await response.Content.ReadAsAsync<Recipe>();
             var filteredRecipes = FilterRecipes(recipes);
 
             return View("FindRecipes", filteredRecipes);
         }
-        // for Category
-        public HttpClient GetHttpClient()
-        {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri("https://www.themealdb.com");
-            return client;
-        }
+        
         public async Task<Meal> GetRecipeByName(string meal)
         {
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={meal}");
             var name = await response.Content.ReadAsAsync<Meal>();
             return name;
@@ -120,97 +163,97 @@ namespace FinalProject_Recipes.Controllers
         public async Task<Recipe> FindRecipesById(Meal meal)
         {
             string search = meal.idMeal;
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={search}");
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             return viewMeal;
         }
 
-        public List<string> AddIngredients(Meal item)
-        {
-            var ingredients = new List<string>();
-            if (item.strIngredient1 != null)
-            {
-                ingredients.Add(item.strIngredient1.ToLower());
-            }
-            if (item.strIngredient2 != null)
-            {
-                ingredients.Add(item.strIngredient2.ToLower());
-            }
-            if (item.strIngredient3 != null)
-            {
-                ingredients.Add(item.strIngredient3.ToLower());
-            }
-            if (item.strIngredient4 != null)
-            {
-                ingredients.Add(item.strIngredient4.ToLower());
-            }
-            if (item.strIngredient5 != null)
-            {
-                ingredients.Add(item.strIngredient5.ToLower());
-            }
-            if (item.strIngredient6 != null)
-            {
-                ingredients.Add(item.strIngredient6.ToLower());
-            }
-            if (item.strIngredient7 != null)
-            {
-                ingredients.Add(item.strIngredient7.ToLower());
-            }
-            if (item.strIngredient8 != null)
-            {
-                ingredients.Add(item.strIngredient8.ToLower());
-            }
-            if (item.strIngredient9 != null)
-            {
-                ingredients.Add(item.strIngredient9.ToLower());
-            }
-            if (item.strIngredient10 != null)
-            {
-                ingredients.Add(item.strIngredient10.ToLower());
-            }
-            if (item.strIngredient11 != null)
-            {
-                ingredients.Add(item.strIngredient11.ToLower());
-            }
-            if (item.strIngredient12 != null)
-            {
-                ingredients.Add(item.strIngredient12.ToLower());
-            }
-            if (item.strIngredient13 != null)
-            {
-                ingredients.Add(item.strIngredient13.ToLower());
-            }
-            if (item.strIngredient14 != null)
-            {
-                ingredients.Add(item.strIngredient14.ToLower());
-            }
-            if (item.strIngredient15 != null)
-            {
-                ingredients.Add(item.strIngredient15.ToLower());
-            }
-            if (item.strIngredient16 != null)
-            {
-                ingredients.Add(item.strIngredient16.ToLower());
-            }
-            if (item.strIngredient17 != null)
-            {
-                ingredients.Add(item.strIngredient17.ToLower());
-            }
-            if (item.strIngredient18 != null)
-            {
-                ingredients.Add(item.strIngredient18.ToLower());
-            }
-            if (item.strIngredient19 != null)
-            {
-                ingredients.Add(item.strIngredient19.ToLower());
-            }
-            if (item.strIngredient20 != null)
-            {
-                ingredients.Add(item.strIngredient20.ToLower());
-            }
-            return ingredients;
-        }
+        //public List<string> AddIngredients(Meal item)
+        //{
+        //    var ingredients = new List<string>();
+        //    if (item.strIngredient1 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient1.ToLower());
+        //    }
+        //    if (item.strIngredient2 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient2.ToLower());
+        //    }
+        //    if (item.strIngredient3 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient3.ToLower());
+        //    }
+        //    if (item.strIngredient4 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient4.ToLower());
+        //    }
+        //    if (item.strIngredient5 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient5.ToLower());
+        //    }
+        //    if (item.strIngredient6 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient6.ToLower());
+        //    }
+        //    if (item.strIngredient7 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient7.ToLower());
+        //    }
+        //    if (item.strIngredient8 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient8.ToLower());
+        //    }
+        //    if (item.strIngredient9 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient9.ToLower());
+        //    }
+        //    if (item.strIngredient10 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient10.ToLower());
+        //    }
+        //    if (item.strIngredient11 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient11.ToLower());
+        //    }
+        //    if (item.strIngredient12 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient12.ToLower());
+        //    }
+        //    if (item.strIngredient13 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient13.ToLower());
+        //    }
+        //    if (item.strIngredient14 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient14.ToLower());
+        //    }
+        //    if (item.strIngredient15 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient15.ToLower());
+        //    }
+        //    if (item.strIngredient16 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient16.ToLower());
+        //    }
+        //    if (item.strIngredient17 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient17.ToLower());
+        //    }
+        //    if (item.strIngredient18 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient18.ToLower());
+        //    }
+        //    if (item.strIngredient19 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient19.ToLower());
+        //    }
+        //    if (item.strIngredient20 != null)
+        //    {
+        //        ingredients.Add(item.strIngredient20.ToLower());
+        //    }
+        //    return ingredients;
+        //}
         public List<DietsAndRestriction> GetDiet()
         {
             if (User.Identity.Name != null)
@@ -325,28 +368,10 @@ namespace FinalProject_Recipes.Controllers
             diet.AddRange(allergies);
             return diet;
         }
-        public async Task<IActionResult> SearchRecipesTitle(string search)
-        {
-            Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
-            if (rgx.IsMatch(search))
-            {
-
-                var client = GetHttpClient();
-                var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
-                var recipes = await response.Content.ReadAsAsync<Recipe>();
-                var filteredRecipes = FilterRecipes(recipes);
-
-                return View("FindRecipes", filteredRecipes);
-            }
-            else
-            {
-                TempData["RegexMatch"] = "Please enter a valid search";
-                return View("Search");
-            }
-        }
+        
         public async Task<IActionResult> SearchRecipesCategory(string search)
         {
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c={search}");
             var recipes = await response.Content.ReadAsAsync<Recipe>();
             var filteredRecipes = FilterRecipesGroup(recipes);
@@ -366,7 +391,7 @@ namespace FinalProject_Recipes.Controllers
                 foreach (var item in recipes.meals)
                 {
                     bool isBad = false;
-                    var ingredients = AddIngredients(item);
+                    var ingredients = RecipeMethods.AddIngredients(item);
 
                     foreach (var name in restrictions)
                     {
@@ -401,7 +426,7 @@ namespace FinalProject_Recipes.Controllers
                 foreach (var item in recipes.meals)
                 {
                     bool isBad = false;
-                    var ingredients = AddIngredients(item);
+                    var ingredients = RecipeMethods.AddIngredients(item);
                     var instructions = item.strInstructions.ToLower();
 
                     foreach (var name in restrictions)

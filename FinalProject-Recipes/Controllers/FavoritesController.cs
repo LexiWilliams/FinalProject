@@ -36,7 +36,7 @@ namespace FinalProject_Recipes.Controllers
         public async Task<Recipe> FindRecipesById(Meal meal)
         {
             string search = meal.idMeal;
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={search}");
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
             return viewMeal;
@@ -118,7 +118,7 @@ namespace FinalProject_Recipes.Controllers
       
         public async Task<Meal> FindFavRecipesById(string mealId)
         {
-            var client = GetHttpClient();
+            var client = RecipeMethods.GetHttpClient();
 
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/lookup.php?i={mealId}");
             var viewMeal = await response.Content.ReadAsAsync<Recipe>();
@@ -126,12 +126,7 @@ namespace FinalProject_Recipes.Controllers
             return meal;
         }
         // need to move this to another class to be pulled
-        public HttpClient GetHttpClient()
-        {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri("https://www.themealdb.com");
-            return client;
-        }
+        
         public IActionResult DisplayFriendFavorite(AspNetUsers friend)
         {
 

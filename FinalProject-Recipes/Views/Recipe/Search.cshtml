@@ -3,12 +3,12 @@
     ViewData["Title"] = "Search";
 }
 
-@TempData["RegexMatch"]
+    <h3>@TempData["RegexMatch"]</h3>
 
 <h1><u>Search By:</u></h1>
 <form action="/Recipe/SearchRecipesTitle" method="post">
     <h3>Title</h3>
-    <input type="text" name="search" placeholder="Recipe" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
+    <input type="text" name="search" placeholder="Recipe Title" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
     <input type="submit" value="Search for Recipe" />
     <br />
     <br />
