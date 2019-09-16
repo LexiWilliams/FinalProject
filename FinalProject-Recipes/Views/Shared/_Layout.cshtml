@@ -15,13 +15,14 @@
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
 <body>
+
     <header class="container-fluid">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <a class="navbar-brand" href=""><img src="~/EatThisNotThatLogo1.png" height="100" width="192" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -73,7 +74,7 @@
                     <partial name="_LoginPartial" />
                 </ul>
             </div>
-        
+
         </nav>
 
     </header>
@@ -117,6 +118,27 @@
 
 </html>
 
+<style>
+
+    body {
+        background-image: url('../../FoodBackground.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 2.5rem;
+        padding-left: 1.5rem;
+    }
+</style>
+
+
+</html>
 
 
 
