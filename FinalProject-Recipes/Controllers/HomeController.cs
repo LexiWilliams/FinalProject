@@ -25,15 +25,22 @@ namespace FinalProject_Recipes.Controllers
         {
             Recipe displayRecipes = new Recipe();
             Meal meal1 = new Meal();
+            Meal[] meals = new Meal[16];
+
+            for (int i = 0; i <= 7; i++)
+            {
             var recipes = GetRandomRecipe().Result;
             meal1 = recipes.meals[0];
-
-            string mealOfTheMonth = "52857";
-            var meal2 = FindFavRecipesById(mealOfTheMonth).Result;
-
-            Meal[] meals = new Meal[2];
-            meals[0] = meal1;
-            meals[1] = meal2;
+            meals[i] = meal1;
+            }
+            List<string> septemberMeals = new List<string>{ "52857", "52845", "52914","52859","52812","52814","52968","52893"};
+            int count = 0;
+            for(int i = 8; i <= 15; i++) 
+            {
+            var meal2 = FindFavRecipesById(septemberMeals[count]).Result;
+                count++;
+                meals[i] = meal2;
+            }
             displayRecipes.meals = meals;
 
             return View(displayRecipes);
