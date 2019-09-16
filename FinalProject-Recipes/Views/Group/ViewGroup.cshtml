@@ -13,16 +13,19 @@
     
 
 
-<h1>View Group Members</h1>
+<h1 style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">View Group Members</h1>
 
 <table class="table">
-    <tr>
+    <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
         <th>Group Member</th>
         <th>Diet</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
             <td>@item.UserName</td>
             <td>@item.Diet</td>
             <td>@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>
@@ -30,12 +33,16 @@
     }
 </table>
 
+<div style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
  @Html.ActionLink("Go to Add Group", "ListGroups", "Group")
+    </div>
 @*@TempData["RegexMatch"]*@
 
 <h1><u>Search By:</u></h1>
 <form action="/Group/SearchRecipesTitle" method="post">
-    <h3>Title</h3>
+    <h3 style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">Title</h3>
     <input type="text" name="search" placeholder="Recipe" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
     <input type="hidden" name="groupName" value="@nameVariable" />
     <input type="submit" value="Search for Recipe" />

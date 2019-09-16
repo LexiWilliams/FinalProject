@@ -4,11 +4,13 @@
     
 }
 @model IEnumerable<FinalProject_Recipes.Models.Group>
-<h1>List Groups</h1>
+<h1 style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">List Groups</h1>
 <table class="table-borderless">
     @foreach (var item in Model)
     {
-        <tr>
+        <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
             <td>@item.GroupName</td>
             <td>@Html.ActionLink("Add Group","AddExistingGroup","Group",item)</td>
         </tr>
