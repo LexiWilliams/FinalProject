@@ -93,14 +93,14 @@ namespace FinalProject_Recipes.Controllers
         }
 
 
-        public IActionResult RemoveGroup(AspNetUsers user)
+        public IActionResult RemoveGroup(Group group)
         {
             Group oldGroup = new Group();
             AspNetUsers thisUser = _context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).First();
             List<Group> groupFavorites = _context.Group.Where(u => u.UserId == thisUser.Id).ToList();
             foreach (var item in groupFavorites)
             {
-                if (item.GroupName == item.UserId)
+                if (item.GroupName == group.GroupName)
                 {
                     oldGroup = item;
                     break;
@@ -108,7 +108,7 @@ namespace FinalProject_Recipes.Controllers
             }
             _context.Group.Remove(oldGroup);
             _context.SaveChanges();
-            return RedirectToAction("ViewGroup");
+            return RedirectToAction("DisplayGroups");
         }
 
         //public List<string> AddIngredients(Meal item)
@@ -318,15 +318,7 @@ namespace FinalProject_Recipes.Controllers
             }
             
         }
-        //public async Task<IActionResult> SearchRecipesCategory(string search)
-        //{
-        //    var client = GetHttpClient();
-        //    var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?c={search}");
-        //    var recipes = await response.Content.ReadAsAsync<Recipe>();
-        //    var filteredRecipes = FilterRecipesGroup(recipes);
-
-        //    return View("FindRecipes", filteredRecipes);
-        //}
+       
         
         public Recipe FilterRecipes(Recipe recipes)
         {
