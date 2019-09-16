@@ -17,7 +17,7 @@
         <br />
         if (item.strMealThumb != null)
         {
-            <img src="@item.strMealThumb" alt="@item.strMeal" width="400" height="400"/>
+            <img src="@item.strMealThumb" alt="@item.strMeal" width="400" height="400" />
         }
 
         <h1><u>@item.strMeal</u></h1>
@@ -193,8 +193,148 @@
 
 
         <p>@item.strInstructions</p>
-        <p>@item.strTags</p>
-        <p>@item.strArea</p>
+        foreach (var bob in Model.meals)
+        {
+            if (bob.strArea == "American")
+            {
+                <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
+                    <img src='@Url.Content("~/USAFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "British")
+            {
+                <a Title="British" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "British"})'>
+                    <img src='@Url.Content("~/UkFlag.png")' width="50" />
+                </a>
+            }
+
+            if (bob.strArea == "Canadian")
+            {
+                <a Title="Canadian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Canadian"})'>
+                    <img src='@Url.Content("~/CanadaFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Chinese")
+            {
+                <a Title="Chinese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Chinese"})'>
+                    <img src='@Url.Content("~/ChineseFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Dutch")
+            {
+                <a Title="Dutch" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Dutch"})'>
+                    <img src='@Url.Content("~/NetherlandsFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Egyptian")
+            {
+                <a Title="Egyptian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Egyptian"})'>
+                    <img src='@Url.Content("~/EgyptFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "French")
+            {
+                <a Title="French" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "French"})'>
+                    <img src='@Url.Content("~/FrenchFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Greek")
+            {
+                <a Title="Greek" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Greek"})'>
+                    <img src='@Url.Content("~/GreekFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Indian")
+            {
+                <a Title="Indian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Indian"})'>
+                    <img src='@Url.Content("~/IndianFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Irish")
+            {
+                <a Title="Irish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Irish"})'>
+                    <img src='@Url.Content("~/IrishFlag.jpg")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Italian")
+            {
+                <a Title="Italian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Italian"})'>
+                    <img src='@Url.Content("~/ItalianFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Jamaican")
+            {
+                <a Title="Jamaican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Jamaican"})'>
+                    <img src='@Url.Content("~/JamaicaFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Japanese")
+            {
+                <a Title="Japanese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Japanese"})'>
+                    <img src='@Url.Content("~/JapaneseFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Kenyan")
+            {
+                <a Title="Kenyan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Kenyan"})'>
+                    <img src='@Url.Content("~/KenyaFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Malaysian")
+            {
+                <a Title="Malaysian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Malaysian"})'>
+                    <img src='@Url.Content("~/MalaysianFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Mexican")
+            {
+                <a Title="Mexican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Mexican"})'>
+                    <img src='@Url.Content("~/MexicoFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Moroccan")
+            {
+                <a Title="Moroccan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Moroccan"})'>
+                    <img src='@Url.Content("~/MoroccanFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Russian")
+            {
+                <a Title="Russian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Russian"})'>
+                    <img src='@Url.Content("~/RussianFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Spanish")
+            {
+                <a Title="Spanish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Spanish"})'>
+                    <img src='@Url.Content("~/SpanishFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Thai")
+            {
+                <a Title="Thai" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Thai"})'>
+                    <img src='@Url.Content("~/ThaiFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Tunisian")
+            {
+                <a Title="Tunisian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Tunisian"})'>
+                    <img src='@Url.Content("~/TunisianFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Turkish")
+            {
+                <a Title="Turkish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Turkish"})'>
+                    <img src='@Url.Content("~/TurkishFlag.png")' width="50" />
+                </a>
+            }
+            if (bob.strArea == "Vietnamese")
+            {
+                <a Title="Vietnamese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Vietnamese"})'>
+                    <img src='@Url.Content("~/VietnamFlag.png")' width="50" />
+                </a>
+            }
+        }
         <p><a href=@item.strYoutube>@item.strYoutube</a></p>
         <p><a href=@item.strSource>@item.strSource</a></p>
     }
