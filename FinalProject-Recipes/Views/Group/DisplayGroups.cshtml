@@ -3,7 +3,8 @@
     ViewData["Title"] = "DisplayGroups";
 }
 @model IEnumerable<FinalProject_Recipes.Models.Group>
-<table class="table">
+<table class="table" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
     <tr>
         <th>Group</th>
     </tr>
@@ -16,4 +17,7 @@
         </tr>
     }
 </table>
+<div style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
 @Html.ActionLink("Search Group", "ListGroups", "Group")
+    </div>

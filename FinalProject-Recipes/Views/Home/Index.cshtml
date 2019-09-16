@@ -4,11 +4,12 @@
 @model FinalProject_Recipes.Models.Recipe
 <br />
 <img class="text-center" style="margin-right:100px;margin-left:200px;width:60%;" src="~/EatThisNotThatLogo1.png" />
-<br />
+<hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:10px;margin-bottom:50px" />
 <h3 style="text-align:center;font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
     1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
     @DateTime.Now.ToString("MMMM")'s Featured Meals
 </h3>
+
 <div class="text-lg-center" style="margin-top:50px">
 
     <a title=" @Model.meals[8].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[8])'>

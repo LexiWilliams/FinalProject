@@ -5,16 +5,20 @@
 
 @model IEnumerable<FinalProject_Recipes.Models.AspNetUsers>
 
-<h1>View Friends</h1>
-@Html.ActionLink("Add A Friend", "Index", "Friend")
+<h1 style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">View Friends</h1>
+<div style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">@Html.ActionLink("Add A Friend", "Index", "Friend")</div>
 <table class="table">
-    <tr>
-        <th>Friend</th>
+    <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+        <th >Friend</th>
         <th>Diet</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
             <td>@item.UserName</td>
             <td>@item.Diet</td>
             <td>@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>

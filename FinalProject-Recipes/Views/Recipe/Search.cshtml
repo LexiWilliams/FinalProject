@@ -5,7 +5,11 @@
 
     <h3>@TempData["RegexMatch"]</h3>
 
-<h1><u>Search By:</u></h1>
+<br />
+<div  style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+
+<h1>Search By:</h1>
 <form action="/Recipe/SearchRecipesTitle" method="post">
     <h3>Title</h3>
     <input type="text" name="search" placeholder="Recipe Title" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
@@ -20,3 +24,4 @@
     <br />
 </form>
 
+</div>
