@@ -1,9 +1,17 @@
 ﻿
 @{
     ViewData["Title"] = "ViewGroup";
+    var nameVariable = TempData["Name"]?.ToString();
+    TempData.Keep();
 }
 
 @model IEnumerable<FinalProject_Recipes.Models.AspNetUsers>
+       
+       
+    
+ @Html.ActionLink("Go Back", "DisplayGroups", "Group")
+    
+
 
 <h1>View Group Members</h1>
 
@@ -22,12 +30,14 @@
     }
 </table>
 
-@TempData["RegexMatch"]
+ @Html.ActionLink("Go to Add Group", "ListGroups", "Group")
+@*@TempData["RegexMatch"]*@
 
 <h1><u>Search By:</u></h1>
 <form action="/Group/SearchRecipesTitle" method="post">
     <h3>Title</h3>
     <input type="text" name="search" placeholder="Recipe" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
+    <input type="hidden" name="groupName" value="@nameVariable" />
     <input type="submit" value="Search for Recipe" />
     <br />
     <br />
