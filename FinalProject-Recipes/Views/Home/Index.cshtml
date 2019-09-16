@@ -3,78 +3,92 @@
 }
 @model FinalProject_Recipes.Models.Recipe
 
-<h1><u>Welcome to Eat This Not That</u></h1>
-<h2>Here is a random recipe</h2>
+@*<h1><u>Welcome to Eat This Not That</u></h1>*@
 
-<a href='@Url.Action("GetRandomRecipe", "Recipe")'>
-    <img src='@Url.Content("~/Question mark plate.png")' width="500" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
-    <img src='@Url.Content("~/USAFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "British"})'>
-    <img src='@Url.Content("~/UkFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Canadian"})'>
-    <img src='@Url.Content("~/CanadaFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Chinese"})'>
-    <img src='@Url.Content("~/ChineseFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Dutch"})'>
-    <img src='@Url.Content("~/NetherlandsFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Egyptian"})'>
-    <img src='@Url.Content("~/EgyptFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "French"})'>
-    <img src='@Url.Content("~/FrenchFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Greek"})'>
-    <img src='@Url.Content("~/GreekFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Indian"})'>
-    <img src='@Url.Content("~/IndianFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Irish"})'>
-    <img src='@Url.Content("~/IrishFlag.jpg")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Italian"})'>
-    <img src='@Url.Content("~/ItalianFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Jamaican"})'>
-    <img src='@Url.Content("~/JamaicaFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Japanese"})'>
-    <img src='@Url.Content("~/JapaneseFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Kenyan"})'>
-    <img src='@Url.Content("~/KenyaFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Malaysian"})'>
-    <img src='@Url.Content("~/MalaysianFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Mexican"})'>
-    <img src='@Url.Content("~/MexicoFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Moroccan"})'>
-    <img src='@Url.Content("~/MoroccanFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Russian"})'>
-    <img src='@Url.Content("~/RussianFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Spanish"})'>
-    <img src='@Url.Content("~/SpanishFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Thai"})'>
-    <img src='@Url.Content("~/ThaiFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Tunisian"})'>
-    <img src='@Url.Content("~/TunisianFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Turkish"})'>
-    <img src='@Url.Content("~/TurkishFlag.png")' width="50" />
-</a>
-<a href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Vietnamese"})'>
-    <img src='@Url.Content("~/VietnamFlag.png")' width="50" />
-</a>
+<div class="text-lg-center" style="">
+    <a title="@Model.meals[1].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[1])'>
+        <img src='@Url.Content(Model.meals[1].strMealThumb)' width="350" , style="margin:75px;border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[0].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
+        <img src='@Url.Content(Model.meals[0].strMealThumb)' width="350" style="margin:75px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <br />
+    <br />
+
+</div>
+<div class="text-center">
+
+    <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
+        <img src='@Url.Content("~/USAFlag.png")' width="50" />
+    </a>
+    <a Title="British" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "British"})'>
+        <img src='@Url.Content("~/UkFlag.png")' width="50" />
+    </a>
+    <a Title="Canadian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Canadian"})'>
+        <img src='@Url.Content("~/CanadaFlag.png")' width="50" />
+    </a>
+    <a Title="Chinese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Chinese"})'>
+        <img src='@Url.Content("~/ChineseFlag.png")' width="50" />
+    </a>
+    <a Title="Dutch" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Dutch"})'>
+        <img src='@Url.Content("~/NetherlandsFlag.png")' width="50" />
+    </a>
+    <a Title="Egyptian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Egyptian"})'>
+        <img src='@Url.Content("~/EgyptFlag.png")' width="50" />
+    </a>
+    <a Title="French" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "French"})'>
+        <img src='@Url.Content("~/FrenchFlag.png")' width="50" />
+    </a>
+    <a Title="Greek" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Greek"})'>
+        <img src='@Url.Content("~/GreekFlag.png")' width="50" />
+    </a>
+    <a Title="Indian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Indian"})'>
+        <img src='@Url.Content("~/IndianFlag.png")' width="50" />
+    </a>
+    <a Title="Irish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Irish"})'>
+        <img src='@Url.Content("~/IrishFlag.jpg")' width="50" />
+    </a>
+    <a Title="Italian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Italian"})'>
+        <img src='@Url.Content("~/ItalianFlag.png")' width="50" />
+    </a>
+    <a Title="Jamaican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Jamaican"})'>
+        <img src='@Url.Content("~/JamaicaFlag.png")' width="50" />
+    </a>
+    <br />
+    <a Title="Japanese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Japanese"})'>
+        <img src='@Url.Content("~/JapaneseFlag.png")' width="50" />
+    </a>
+    <a Title="Kenyan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Kenyan"})'>
+        <img src='@Url.Content("~/KenyaFlag.png")' width="50" />
+    </a>
+    <a Title="Malaysian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Malaysian"})'>
+        <img src='@Url.Content("~/MalaysianFlag.png")' width="50" />
+    </a>
+    <a Title="Mexican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Mexican"})'>
+        <img src='@Url.Content("~/MexicoFlag.png")' width="50" />
+    </a>
+    <a Title="Moroccan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Moroccan"})'>
+        <img src='@Url.Content("~/MoroccanFlag.png")' width="50" />
+    </a>
+    <a Title="Russian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Russian"})'>
+        <img src='@Url.Content("~/RussianFlag.png")' width="50" />
+    </a>
+    <a Title="Spanish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Spanish"})'>
+        <img src='@Url.Content("~/SpanishFlag.png")' width="50" />
+    </a>
+    <a Title="Thai" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Thai"})'>
+        <img src='@Url.Content("~/ThaiFlag.png")' width="50" />
+    </a>
+    <a Title="Tunisian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Tunisian"})'>
+        <img src='@Url.Content("~/TunisianFlag.png")' width="50" />
+    </a>
+    <a Title="Turkish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Turkish"})'>
+        <img src='@Url.Content("~/TurkishFlag.png")' width="50" />
+    </a>
+    <a Title="Vietnamese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Vietnamese"})'>
+        <img src='@Url.Content("~/VietnamFlag.png")' width="50" />
+    </a>
+    <a Title="Unknown" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Unknown"})'>
+        <img src='@Url.Content("~/Question Mark Flag.png")' width="50" />
+    </a>
+</div>
