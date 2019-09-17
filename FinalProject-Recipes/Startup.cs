@@ -36,8 +36,7 @@ namespace FinalProject_Recipes
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connection = "Server=.\\SQLExpress;Database=FinalDb;Trusted_Connection=True;ConnectRetryCount=0;";
-            services.AddDbContext<FinalDbContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<FinalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

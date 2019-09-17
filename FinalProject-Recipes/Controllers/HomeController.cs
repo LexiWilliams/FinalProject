@@ -29,9 +29,9 @@ namespace FinalProject_Recipes.Controllers
 
             for (int i = 0; i <= 7; i++)
             {
-            var recipes = GetRandomRecipe().Result;
-            meal1 = recipes.meals[0];
-            meals[i] = meal1;
+                var recipes = GetRandomRecipe().Result;
+                meal1 = recipes.meals[0];
+                meals[i] = meal1;
             }
             List<string> septemberMeals = new List<string>{ "52857", "52845", "52914","52859","52812","52814","52968","52893"};
             int count = 0;
