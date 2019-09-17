@@ -38,7 +38,7 @@ namespace FinalProject_Recipes.Controllers
             var recipe = FindRecipesById(meal).Result;
             return View(recipe);
         }
-        
+
 
         public async Task<IActionResult> GetRandomRecipe()
         {
@@ -78,6 +78,10 @@ namespace FinalProject_Recipes.Controllers
                 else
                 {
                     var filteredRecipes = FilterRecipes(recipes);
+                    if (filteredRecipes.meals == null)
+                    {
+                        filteredRecipes.meals[0] = null;
+                    }
 
                     return View("FindRecipes", filteredRecipes);
                 }
@@ -109,6 +113,10 @@ namespace FinalProject_Recipes.Controllers
                 {
                     var actualRecipes = GetRecipesById(recipes);
                     var filteredRecipes = FilterRecipes(actualRecipes);
+                    if (filteredRecipes.meals[0] == null)
+                    {
+                        filteredRecipes.meals[0] = null;
+                    }
 
                     return View("FindRecipes", filteredRecipes);
 
@@ -148,13 +156,13 @@ namespace FinalProject_Recipes.Controllers
             var client = RecipeMethods.GetHttpClient();
             var response = await client.GetAsync($"api/json/v1/{_apiKey}/filter.php?a={search}");
             var recipes = await response.Content.ReadAsAsync<Recipe>();
-            
-                var actualRecipes = GetRecipesById(recipes);
-                var filteredRecipes = FilterRecipes(actualRecipes);
 
-                return View("FindRecipes", filteredRecipes);
+            var actualRecipes = GetRecipesById(recipes);
+            var filteredRecipes = FilterRecipes(actualRecipes);
+
+            return View("FindRecipes", filteredRecipes);
         }
-        
+
         public async Task<Meal> GetRecipeByName(string meal)
         {
             var client = RecipeMethods.GetHttpClient();
@@ -285,7 +293,7 @@ namespace FinalProject_Recipes.Controllers
             diet.AddRange(allergies);
             return diet;
         }
-        
+
         public async Task<IActionResult> SearchRecipesCategory(string search)
         {
             var client = RecipeMethods.GetHttpClient();
@@ -373,6 +381,35 @@ namespace FinalProject_Recipes.Controllers
             }
             Recipe filteredRecipes = new Recipe();
             filteredRecipes.meals = filteredMeals;
+
+            Recipe myRecipes = new Recipe();
+            count = 0;
+            foreach (var recipe in filteredRecipes.meals)
+            {
+                if (recipe != null)
+                {
+                    count++;
+                }
+            }
+            if (count != 0)
+            {
+                Meal[] newMeals = new Meal[count];
+                count = 0;
+                foreach (var recipe in filteredRecipes.meals)
+                {
+                    if (recipe != null)
+                    {
+                        newMeals[count] = recipe;
+                        count++;
+                    }
+                }
+                filteredRecipes.meals = newMeals;
+            }
+            else
+            {
+                Meal[] mealStuff = new Meal[1];
+                filteredRecipes.meals = mealStuff;
+            }
             return filteredRecipes;
         }
     }

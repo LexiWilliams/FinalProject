@@ -4,37 +4,38 @@
 }
 @model FinalProject_Recipes.Models.Recipe
 <h1 class="text-center" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white,
-    -1px 1px 0 white, 1px 1px 0 white">Found Recipes</h1>
+    -1px 1px 0 white, 1px 1px 0 white">
+    Found Recipes
+</h1>
 <div style="align-content:center">
 
-@{ if (Model.meals != null)
-    {
-
-        <div class="row" style="text-align:center;margin-left:120px;margin-right:100px">
-            @foreach (var item in Model.meals)
-            {
-                <div class="column">
-                    <div class="border-style">
-                        <div style="font-family:Bahnschrift;font-size:large;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
-                            @item.strMeal
-                        </div>
-                        <div>
-                            <a title=" @item.strMeal" href='@Url.Action("ViewRecipe", "Recipe", item)'>
-                                <img src='@Url.Content(item.strMealThumb)' width="200" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-                            </a>
+    @{ if (Model.meals[0] != null)
+        {
+            <div class="row" style="text-align:center;margin-left:120px;margin-right:100px">
+                @foreach (var item in Model.meals)
+                {
+                    <div class="column">
+                        <div class="border-style">
+                            <div style="font-family:Bahnschrift;font-size:large;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+                                @item.strMeal
+                            </div>
+                            <div>
+                                <a title=" @item.strMeal" href='@Url.Action("ViewRecipe", "Recipe", item)'>
+                                    <img src='@Url.Content(item.strMealThumb)' width="200" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p> Sorry, no recipes matched your search and your preferences.</p>
+        }
     }
-    else
-    {
-        < p > Sorry, no recipes matched your search and your preferences.</ p >
-    }
-}
 
-    </div>
+</div>
 
 <style>
     .border-style {

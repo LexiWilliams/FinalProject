@@ -16,6 +16,7 @@
         </div>
     </div>
     <br />
+    <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
 
     <h3 style="text-align:center;font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
     1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
@@ -49,7 +50,7 @@
         </a>
         <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
         <h3 style="text-align:center;margin-top:50px;margin-bottom:50px;font-family:Bahnschrift;color:black;text-shadow:
-        -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white" ">
+        -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
             Random Meals
         </h3>
         <a title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
@@ -78,7 +79,7 @@
         </a>
         <hr style="border-top:solid;border-top-color:white; border-top-width:5px;margin-top:50px;margin-bottom:50px " />
     </div>
-    <div class="text-center">
+    <div style="text-align:center">
         <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
             <img src='@Url.Content("~/USAFlag.png")' width="50" />
         </a>
