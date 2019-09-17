@@ -3,29 +3,19 @@
 }
 @model FinalProject_Recipes.Models.Recipe
 <br />
-<img class="text-center" style="margin-right:100px;margin-left:200px;width:60%;" src="~/EatThisNotThatLogo1.png" />
-
-<div class="text-lg-center" style="margin-top:50px">
+<img class="text-center" src="~/EatThisNotThatLogo1.png" />
 
 
-<div class="button">
-    <div class="halfdiv">
-        <a href="#" class="bttn">SEARCH</a>
+<div class="text-lg-center" style="margin-top: 50px">
+    <div class="row">
+        <div class="col">
+            <a href="/Recipe/Search" class="bttn">SEARCH</a>
+        </div>
+        <div class="col">
+            <a asp-area="" asp-controller="Recipe" asp-action="GetRandomRecipe" class="bttn">RANDOM</a>
+        </div>
     </div>
-    <div class="halfdiv">
-        <a href="#" class="bttn">RANDOM</a>
-    </div>    
-</div>
     <br />
-
-<hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:10px;margin-bottom:50px" />
-<h3 style="text-align:center;font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
-    @DateTime.Now.ToString("MMMM")'s Featured Meals
-</h3>
-
-
-
 
     <h3 style="text-align:center;font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
     1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
@@ -164,15 +154,17 @@
         </a>
     </div>
 
+
     <style>
-        button {
-            position: absolute;
-            top: 50%;
-            left: 80%;
-            transform: translate(-50%,-50%);
-            font-size: 2.5rem;
-            font-weight: bold;
+
+
+
+        .text-center {
+            width: 60%;
+            margin: 0 auto;
+            display: inherit;
         }
+
 
         .bttn {
             border: 2px solid #c0700e;
@@ -182,15 +174,13 @@
             transition: 0.6s ease;
             font-size: 2.5rem;
             font-weight: bold;
-            margin-top: -30px;
+            margin: 0 auto;
         }
 
             .bttn:hover {
                 background-color: white;
                 color: #000;
             }
-
-        .halfdiv {
-            width: 50%;
-        }
     </style>
+</div>
+
