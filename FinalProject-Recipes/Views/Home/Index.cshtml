@@ -24,179 +24,234 @@
     <h3>
         @DateTime.Now.ToString("MMMM")'s Featured Meals
     </h3>
-    <div class="text-lg-center" style="margin-top:50px">
+    <div class="bd-example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
 
-        <a title=" @Model.meals[8].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[8])'>
-            <img src='@Url.Content(Model.meals[8].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[9].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[9])'>
-            <img src='@Url.Content(Model.meals[9].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[10].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[10])'>
-            <img src='@Url.Content(Model.meals[10].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[11].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[11])'>
-            <img src='@Url.Content(Model.meals[11].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[12].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[12])'>
-            <img src='@Url.Content(Model.meals[12].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[13].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[13])'>
-            <img src='@Url.Content(Model.meals[13].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[14].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[14])'>
-            <img src='@Url.Content(Model.meals[14].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[15].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[15])'>
-            <img src='@Url.Content(Model.meals[15].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
-        <h3>
-            Random Meals
-        </h3>
-        <a title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
-            <img src='@Url.Content(Model.meals[0].strMealThumb)' width="210" , style="margin:15px;border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[1].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[1])'>
-            <img src='@Url.Content(Model.meals[1].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[2].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[2])'>
-            <img src='@Url.Content(Model.meals[2].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[3].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[3])'>
-            <img src='@Url.Content(Model.meals[3].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[4].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[4])'>
-            <img src='@Url.Content(Model.meals[4].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[5].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[5])'>
-            <img src='@Url.Content(Model.meals[5].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[6].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[6])'>
-            <img src='@Url.Content(Model.meals[6].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <a title=" @Model.meals[7].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[7])'>
-            <img src='@Url.Content(Model.meals[7].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
-        </a>
-        <hr style="border-top:solid;border-top-color:white; border-top-width:5px;margin-top:50px;margin-bottom:50px " />
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a title=" @Model.meals[8].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[8])'>
+                        <img src='@Url.Content(Model.meals[8].strMealThumb)' class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@Model.meals[8].strMeal</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a title=" @Model.meals[9].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[9])'>
+                        <img src='@Url.Content(Model.meals[9].strMealThumb)' class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@Model.meals[9].strMeal</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a title=" @Model.meals[11].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[11])'>
+                        <img src='@Url.Content(Model.meals[11].strMealThumb)' class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@Model.meals[11].strMeal</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a title=" @Model.meals[12].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[11])'>
+                        <img src='@Url.Content(Model.meals[12].strMealThumb)' class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@Model.meals[12].strMeal</h5>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <a title=" @Model.meals[10].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[10])'>
+                        <img src='@Url.Content(Model.meals[10].strMealThumb)' class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@Model.meals[10].strMeal</h5>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
-    <div style="text-align:center">
-        <h3>
-            Search by Country
-        </h3>
-        <br />
-        <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
-            <img src='@Url.Content("~/USAFlag.png")' width="50" />
-        </a>
-        <a Title="British" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "British"})'>
-            <img src='@Url.Content("~/UkFlag.png")' width="50" />
-        </a>
-        <a Title="Canadian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Canadian"})'>
-            <img src='@Url.Content("~/CanadaFlag.png")' width="50" />
-        </a>
-        <a Title="Chinese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Chinese"})'>
-            <img src='@Url.Content("~/ChineseFlag.png")' width="50" />
-        </a>
-        <a Title="Dutch" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Dutch"})'>
-            <img src='@Url.Content("~/NetherlandsFlag.png")' width="50" />
-        </a>
-        <a Title="Egyptian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Egyptian"})'>
-            <img src='@Url.Content("~/EgyptFlag.png")' width="50" />
-        </a>
-        <a Title="French" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "French"})'>
-            <img src='@Url.Content("~/FrenchFlag.png")' width="50" />
-        </a>
-        <a Title="Greek" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Greek"})'>
-            <img src='@Url.Content("~/GreekFlag.png")' width="50" />
-        </a>
-        <a Title="Indian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Indian"})'>
-            <img src='@Url.Content("~/IndianFlag.png")' width="50" />
-        </a>
-        <a Title="Irish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Irish"})'>
-            <img src='@Url.Content("~/IrishFlag.jpg")' width="50" />
-        </a>
-        <a Title="Italian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Italian"})'>
-            <img src='@Url.Content("~/ItalianFlag.png")' width="50" />
-        </a>
-        <a Title="Jamaican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Jamaican"})'>
-            <img src='@Url.Content("~/JamaicaFlag.png")' width="50" />
-        </a>
-        <br />
-        <a Title="Japanese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Japanese"})'>
-            <img src='@Url.Content("~/JapaneseFlag.png")' width="50" />
-        </a>
-        <a Title="Kenyan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Kenyan"})'>
-            <img src='@Url.Content("~/KenyaFlag.png")' width="50" />
-        </a>
-        <a Title="Malaysian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Malaysian"})'>
-            <img src='@Url.Content("~/MalaysianFlag.png")' width="50" />
-        </a>
-        <a Title="Mexican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Mexican"})'>
-            <img src='@Url.Content("~/MexicoFlag.png")' width="50" />
-        </a>
-        <a Title="Moroccan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Moroccan"})'>
-            <img src='@Url.Content("~/MoroccanFlag.png")' width="50" />
-        </a>
-        <a Title="Russian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Russian"})'>
-            <img src='@Url.Content("~/RussianFlag.png")' width="50" />
-        </a>
-        <a Title="Spanish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Spanish"})'>
-            <img src='@Url.Content("~/SpanishFlag.png")' width="50" />
-        </a>
-        <a Title="Thai" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Thai"})'>
-            <img src='@Url.Content("~/ThaiFlag.png")' width="50" />
-        </a>
-        <a Title="Tunisian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Tunisian"})'>
-            <img src='@Url.Content("~/TunisianFlag.png")' width="50" />
-        </a>
-        <a Title="Turkish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Turkish"})'>
-            <img src='@Url.Content("~/TurkishFlag.png")' width="50" />
-        </a>
-        <a Title="Vietnamese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Vietnamese"})'>
-            <img src='@Url.Content("~/VietnamFlag.png")' width="50" />
-        </a>
-        <a Title="Unknown" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Unknown"})'>
-            <img src='@Url.Content("~/Question Mark Flag.png")' width="50" />
-        </a>
-    </div>
-
-
-    <style>
-        @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-        @@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
-        h3 {
-            text-align: center;
-            font-family: 'Raleway', sans-serif;
-            font-weight: bolder;
-            text-transform: uppercase;
-            text-shadow: -1px -1px 0 white 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
-            font-size: 2.2rem;
-        }
-
-        .text-center {
-            width: 60%;
-            margin: 0 auto;
-            display: inherit;
-        }
-
-
-        .bttn {
-            border: 2px solid #c0700e;
-            padding: 10px 20px;
-            color: #c0700e;
-            text-decoration: none;
-            transition: 0.6s ease;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 0 auto;
-        }
-
-            .bttn:hover {
-                background-color: white;
-                color: #000;
-            }
-    </style>
+    <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
+    <h3>
+        Random Meals
+    </h3>
+    <a title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
+        <img src='@Url.Content(Model.meals[0].strMealThumb)' width="210" , style="margin:15px;border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[1].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[1])'>
+        <img src='@Url.Content(Model.meals[1].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[2].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[2])'>
+        <img src='@Url.Content(Model.meals[2].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[3].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[3])'>
+        <img src='@Url.Content(Model.meals[3].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[4].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[4])'>
+        <img src='@Url.Content(Model.meals[4].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[5].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[5])'>
+        <img src='@Url.Content(Model.meals[5].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[6].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[6])'>
+        <img src='@Url.Content(Model.meals[6].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <a title=" @Model.meals[7].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[7])'>
+        <img src='@Url.Content(Model.meals[7].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+    </a>
+    <hr style="border-top:solid;border-top-color:white; border-top-width:5px;margin-top:50px;margin-bottom:50px " />
 </div>
+<div class="text-center">
+    <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
+        <img src='@Url.Content("~/USAFlag.png")' width="50" />
+    </a>
+    <a Title="British" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "British"})'>
+        <img src='@Url.Content("~/UkFlag.png")' width="50" />
+    </a>
+    <a Title="Canadian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Canadian"})'>
+        <img src='@Url.Content("~/CanadaFlag.png")' width="50" />
+    </a>
+    <a Title="Chinese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Chinese"})'>
+        <img src='@Url.Content("~/ChineseFlag.png")' width="50" />
+    </a>
+    <a Title="Dutch" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Dutch"})'>
+        <img src='@Url.Content("~/NetherlandsFlag.png")' width="50" />
+    </a>
+    <a Title="Egyptian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Egyptian"})'>
+        <img src='@Url.Content("~/EgyptFlag.png")' width="50" />
+    </a>
+    <a Title="French" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "French"})'>
+        <img src='@Url.Content("~/FrenchFlag.png")' width="50" />
+    </a>
+    <a Title="Greek" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Greek"})'>
+        <img src='@Url.Content("~/GreekFlag.png")' width="50" />
+    </a>
+    <a Title="Indian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Indian"})'>
+        <img src='@Url.Content("~/IndianFlag.png")' width="50" />
+    </a>
+    <a Title="Irish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Irish"})'>
+        <img src='@Url.Content("~/IrishFlag.jpg")' width="50" />
+    </a>
+    <a Title="Italian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Italian"})'>
+        <img src='@Url.Content("~/ItalianFlag.png")' width="50" />
+    </a>
+    <a Title="Jamaican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Jamaican"})'>
+        <img src='@Url.Content("~/JamaicaFlag.png")' width="50" />
+    </a>
+    <br />
+    <a Title="Japanese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Japanese"})'>
+        <img src='@Url.Content("~/JapaneseFlag.png")' width="50" />
+    </a>
+    <a Title="Kenyan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Kenyan"})'>
+        <img src='@Url.Content("~/KenyaFlag.png")' width="50" />
+    </a>
+    <a Title="Malaysian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Malaysian"})'>
+        <img src='@Url.Content("~/MalaysianFlag.png")' width="50" />
+    </a>
+    <a Title="Mexican" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Mexican"})'>
+        <img src='@Url.Content("~/MexicoFlag.png")' width="50" />
+    </a>
+    <a Title="Moroccan" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Moroccan"})'>
+        <img src='@Url.Content("~/MoroccanFlag.png")' width="50" />
+    </a>
+    <a Title="Russian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Russian"})'>
+        <img src='@Url.Content("~/RussianFlag.png")' width="50" />
+    </a>
+    <a Title="Spanish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Spanish"})'>
+        <img src='@Url.Content("~/SpanishFlag.png")' width="50" />
+    </a>
+    <a Title="Thai" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Thai"})'>
+        <img src='@Url.Content("~/ThaiFlag.png")' width="50" />
+    </a>
+    <a Title="Tunisian" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Tunisian"})'>
+        <img src='@Url.Content("~/TunisianFlag.png")' width="50" />
+    </a>
+    <a Title="Turkish" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Turkish"})'>
+        <img src='@Url.Content("~/TurkishFlag.png")' width="50" />
+    </a>
+    <a Title="Vietnamese" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Vietnamese"})'>
+        <img src='@Url.Content("~/VietnamFlag.png")' width="50" />
+    </a>
+    <a Title="Unknown" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "Unknown"})'>
+        <img src='@Url.Content("~/Question Mark Flag.png")' width="50" />
+    </a>
+</div>
+
+
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+    @@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+    h3 {
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        text-transform: uppercase;
+        text-shadow: -1px -1px 0 white 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+        font-size: 2.2rem;
+    }
+
+    .text-center {
+        width: 60%;
+        margin: 0 auto;
+        display: inherit;
+    }
+
+
+    .bttn {
+        border: 2px solid #c0700e;
+        padding: 10px 20px;
+        color: #c0700e;
+        text-decoration: none;
+        transition: 0.6s ease;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+
+        .bttn:hover {
+            background-color: white;
+            color: #000;
+        }
+
+    .carousel-item {
+        margin: auto;
+        border: solid;
+        border-color: white;
+        border-width: 10px;
+        width: 400px;
+        height: 400px;
+    }
+
+    .bd-example {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    .carousel-inner {
+        width: 400px;
+        margin: 0 auto;
+        height: 400px;
+    }
+</style>
+
+
+
 
 
