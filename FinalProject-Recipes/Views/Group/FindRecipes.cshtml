@@ -3,18 +3,21 @@
     ViewData["Title"] = "FindRecipe";
 }
 @model FinalProject_Recipes.Models.Recipe
-<h1>Found Recipes</h1>
+<h1 style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">Found Recipes</h1>
 @{ if (Model.meals != null)
    {
         <table class="table-dark">
-            <tr>
+            <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
                 <th><b><u>Meal</u></b></th>
             </tr>
             @foreach (var item in Model.meals)
             {
                 if (item != null)
                 {
-                    <tr>
+                    <tr style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
                         <td>@item.strMeal</td>
                         <td><img src="@item.strMealThumb" alt="@item.strMeal" width="100" height="100" /></td>
                         <td>@Html.ActionLink("View Recipe", "ViewRecipe","Recipe", item)</td>
@@ -25,7 +28,8 @@
     }
     else
     {
-        <p>Sorry, no recipes matched your search and your preferences.</p>
+        <p style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
+    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">Sorry, no recipes matched your search and your preferences.</p>
     }
 }
 
