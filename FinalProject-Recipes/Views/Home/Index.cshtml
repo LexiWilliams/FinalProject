@@ -1,12 +1,15 @@
+
 @{
     ViewData["Title"] = "Home Page";
 }
+
+
 @model FinalProject_Recipes.Models.Recipe
 <br />
 <img class="text-center" src="~/EatThisNotThatLogo1.png" />
 
 
-<div class="text-lg-center" style="margin-top: 50px">
+<div class="text-lg-center" style="margin-top: 10px">
     <div class="row">
         <div class="col">
             <a href="/Recipe/Search" class="bttn">SEARCH</a>
@@ -16,10 +19,9 @@
         </div>
     </div>
     <br />
-    <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
+    <br />
 
-    <h3 style="text-align:center;font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+    <h3>
         @DateTime.Now.ToString("MMMM")'s Featured Meals
     </h3>
     <div class="text-lg-center" style="margin-top:50px">
@@ -49,8 +51,7 @@
             <img src='@Url.Content(Model.meals[15].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
         </a>
         <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
-        <h3 style="text-align:center;margin-top:50px;margin-bottom:50px;font-family:Bahnschrift;color:black;text-shadow:
-        -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+        <h3>
             Random Meals
         </h3>
         <a title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
@@ -79,7 +80,7 @@
         </a>
         <hr style="border-top:solid;border-top-color:white; border-top-width:5px;margin-top:50px;margin-bottom:50px " />
     </div>
-    <div style="text-align:center">
+    <div class="text-center">
         <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
             <img src='@Url.Content("~/USAFlag.png")' width="50" />
         </a>
@@ -157,8 +158,17 @@
 
 
     <style>
+        @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+        @@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-
+        h3 {
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-weight: bolder;
+            text-transform: uppercase;
+            text-shadow: -1px -1px 0 white 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+            font-size: 2.2rem;
+        }
 
         .text-center {
             width: 60%;
@@ -184,4 +194,5 @@
             }
     </style>
 </div>
+
 
