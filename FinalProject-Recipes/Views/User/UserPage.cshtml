@@ -4,123 +4,309 @@
 }
 
 @model FinalProject_Recipes.Models.AspNetUsers
-<div class="user">
+@*<div class="user">
 
-<h1>User Profile</h1>
+        <h1>User Profile</h1>
+
+        @Html.ActionLink("Edit Preferences", "Preferences", "User")
+        <h2>Privacy</h2>
+        @if (Model.Private == true)
+        {
+            <p>Privacy: Private Profile</p>
+        }
+        else
+        {
+            <p>Privacy: Public Profile</p>
+        }
+        <h2>Restrictions</h2>
+        @if (Model.Milk == true)
+        {
+            <p>Milk: restricted</p>
+        }
+        else
+        {
+            <p>Milk: not restricted</p>
+        }
+        @if (Model.Eggs == true)
+        {
+            <p>Eggs: restricted</p>
+        }
+        else
+        {
+            <p>Eggs: not restricted</p>
+        }
+        @if (Model.Fish == true)
+        {
+            <p>Fish: restricted</p>
+        }
+        else
+        {
+            <p>Fish: not restricted</p>
+        }
+        @if (Model.Shellfish == true)
+        {
+            <p>Shellfish: restricted</p>
+        }
+        else
+        {
+            <p>Shellfish: not restricted</p>
+        }
+        @if (Model.Treenuts == true)
+        {
+            <p>Treenuts: restricted</p>
+        }
+        else
+        {
+            <p>Treenuts: not restricted</p>
+        }
+        @if (Model.Peanuts == true)
+        {
+            <p>Peanuts: restricted</p>
+        }
+        else
+        {
+            <p>Peanuts: not restricted</p>
+        }
+        @if (Model.Wheat == true)
+        {
+            <p>Wheat: restricted</p>
+        }
+        else
+        {
+            <p>Wheat: not restricted</p>
+        }
+        @if (Model.Soy == true)
+        {
+            <p>Soy: restricted</p>
+        }
+        else
+        {
+            <p>Soy: not restricted</p>
+        }
+        <h2>Diet</h2>
+        @if (Model.Diet == "Gluten Free")
+        {
+            <p>Gluten Free</p>
+        }
+        else if (Model.Diet == "Vegan")
+        {
+            <p>Vegan</p>
+        }
+        else if (Model.Diet == "Vegetarian")
+        {
+            <p>Vegetarian</p>
+        }
+        else if (Model.Diet == "Pescatarian")
+        {
+            <p>Pescatarian</p>
+        }
+        else if (Model.Diet == "Keto")
+        {
+            <p>Keto</p>
+        }
+        else if (Model.Diet == "Paleo")
+        {
+            <p>Paleo</p>
+        }
+        else
+        {
+            <p>None</p>
+        }
+
+
+    </div>*@
+
+
 
 @Html.ActionLink("Edit Preferences", "Preferences", "User")
-    <h2>Privacy</h2>
-    @if (Model.Private == true)
-    {
-        <p>Privacy: Private Profile</p>
-    }
-    else
-    {
-        <p>Privacy: Public Profile</p>
-    }
-    <h2>Restrictions</h2>
-    @if (Model.Milk == true)
-    {
-        <p>Milk: restricted</p>
-    }
-    else
-    {
-        <p>Milk: not restricted</p>
-    }
-    @if (Model.Eggs == true)
-    {
-        <p>Eggs: restricted</p>
-    }
-    else
-    {
-        <p>Eggs: not restricted</p>
-    }
-    @if (Model.Fish == true)
-    {
-        <p>Fish: restricted</p>
-    }
-    else
-    {
-        <p>Fish: not restricted</p>
-    }
-    @if (Model.Shellfish == true)
-    {
-        <p>Shellfish: restricted</p>
-    }
-    else
-    {
-        <p>Shellfish: not restricted</p>
-    }
-    @if (Model.Treenuts == true)
-    {
-        <p>Treenuts: restricted</p>
-    }
-    else
-    {
-        <p>Treenuts: not restricted</p>
-    }
-    @if (Model.Peanuts == true)
-    {
-        <p>Peanuts: restricted</p>
-    }
-    else
-    {
-        <p>Peanuts: not restricted</p>
-    }
-    @if (Model.Wheat == true)
-    {
-        <p>Wheat: restricted</p>
-    }
-    else
-    {
-        <p>Wheat: not restricted</p>
-    }
-    @if (Model.Soy == true)
-    {
-        <p>Soy: restricted</p>
-    }
-    else
-    {
-        <p>Soy: not restricted</p>
-    }
-    <h2>Diet</h2>
-    @if (Model.Diet == "Gluten Free")
-    {
-        <p>Diet: Gluten Free</p>
-    }
-    else if (Model.Diet == "Vegan")
-    {
-        <p>Diet: Vegan</p>
-    }
-    else if (Model.Diet == "Vegetarian")
-    {
-        <p>Diet: Vegetarian</p>
-    }
-    else if (Model.Diet == "Pescatarian")
-    {
-        <p>Diet: Pescatarian</p>
-    }
-    else if (Model.Diet == "Keto")
-    {
-        <p>Diet: Keto</p>
-    }
-    else if (Model.Diet == "Paleo")
-    {
-        <p>Diet: Paleo</p>
-    }
-    else
-    {
-        <p>Diet: none</p>
-    }
- 
+<table class="content-table">
+    <tr>
+        <td> &nbsp;</td>
+        <td> Restrictions </td>
+    </tr>
+    <tr>
+        <td>Diet: </td>
+        @if (Model.Diet == "Vegan")
+        {
+            <td>Vegan</td>
+        }
+        else if (Model.Diet == "Vegetarian")
+        {
+            <td>Vegetarian</td>
+        }
+        else if (Model.Diet == "Keto")
+        {
+            <td>Keto</td>
+        }
+        else if (Model.Diet == "Paleo")
+        {
+            <td>Paleo</td>
+        }
+        else if (Model.Diet == "Pescatarian")
+        {
+            <td>Pescatarian</td>
+        }
+        else if (Model.Diet == "Gluten Free")
+        {
+            <td>Gluten Free</td>
+        }
+        else
+        {
+            <td>None</td>
+        }
+    </tr>
+    <tr>
+        <td>Milk:</td>
+        @if (Model.Milk == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    </tr>
+    <tr>
+        <td>Eggs: </td>
+        @if (Model.Eggs == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    <tr>
+        <td>Fish:</td>
+        @if (Model.Fish == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    </tr>
+    <tr>
+        <td>Shellfish: </td>
+        @if (Model.Shellfish == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    </tr>
+    <tr>
+        <td>Wheat: </td>
+        @if (Model.Wheat == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    <tr>
+        <td>Soy: </td>
+        @if (Model.Soy == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    </tr>
+    <tr>
+        <td>Peanuts: </td>
+        @if (Model.Peanuts == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    <tr>
+        <td>Treenuts: </td>
+        @if (Model.Treenuts == true)
+        {
+            <td>Restricted</td>
+        }
+        else
+        {
+            <td>Not Restricted</td>
+        }
+    </tr>
 
 
-</div>
+</table>
+
+@if (Model.Private == true)
+{
+    <p>Privacy: Private Profile</p>
+}
+else
+{
+    <p>Privacy: Public Profile</p>
+}
+
 <style>
-       @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-    .preferences
-    {
+    @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1.5rem;
+        min-width: 400px;
+        border-radius: 10px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0, 0.15);
+        background-color: chocolate;
+        color: white;
         font-family: 'Raleway', sans-serif;
     }
 
+        .content-table thead tr {
+            background-color: coral;
+            color: whitesmoke;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        content.content-table td {
+            padding: 15px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 2px solid #dddddd
+        }
+
+            .content-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+                color: black;
+            }
+
+            .content-table tbody tr:last-of-type {
+                border-bottom: 2px solid coral;
+            }
+
+            .content-table tbody tr.active row {
+                font-weight: bold;
+                color: coral;
+            }
+
+    .action-link1 {
+        font-family: 'Raleway', sans-serif;
+    }
+
+    h2{
+        font-family: 'Raleway', sans-serif;
+    }
 </style>
+
+
+

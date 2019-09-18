@@ -14,14 +14,15 @@
     {
 <tr>
     <td>@item.GroupName</td>
-    <td>@Html.ActionLink("View Group", "ViewGroup", "Group", item)</td>
-    <td>@Html.ActionLink("Remove Group", "RemoveGroup", "Group", item)</td>
+    <td>&nbsp;&nbsp;@Html.ActionLink("View Group", "ViewGroup", "Group", item)</td>
+    <td>&nbsp;&nbsp; @Html.ActionLink("Remove Group", "RemoveGroup", "Group", item)</td>
 </tr>
     }
 </table>
 <div class="action-link1">
     @Html.ActionLink("Search Group", "ListGroups", "Group")
 </div>
+
 <style>
     @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
