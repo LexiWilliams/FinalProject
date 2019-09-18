@@ -27,8 +27,7 @@
 
 @model IEnumerable<FinalProject_Recipes.Models.FavoriteRecipes>
 
-<h1 class="text-center" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white,
-    -1px 1px 0 white, 1px 1px 0 white">
+<h1>
     Favorite Recipes
 </h1>
 
@@ -37,8 +36,7 @@
     {
         <div style="text-align:center">
             <div class="border-style">
-                <div style="font-family:Bahnschrift;font-size:large;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white,
-    -1px 1px 0 white, 1px 1px 0 white">
+                <div class="favorites">
                     @recipe.RecipeName
                 </div>
                 <div>
@@ -56,15 +54,30 @@
 </div>
 
 <style>
+      @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+     h1
+     {
+         font-family: 'Raleway', sans-serif;
+         font-weight:bold;
+         text-align: center;
+     }
+
     .border-style {
         padding-left: 10px;
         padding-right: 10px;
         text-align: center;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Raleway', sans-serif;
         font-size: medium;
         border: solid;
         border-color: transparent;
         border-width: thick;
         margin: 15px;
+    }  
+    .favorites
+    {
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        text-transform: capitalize;
     }
+
 </style>

@@ -5,16 +5,16 @@
 
 @model IEnumerable<FinalProject_Recipes.Models.FavoriteRecipes>
 
-<h1 class="text-center" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white, 
-    -1px 1px 0 white, 1px 1px 0 white">Favorite Recipes</h1>
+<h1>
+    Favorite Recipes
+</h1>
 
 <div class="row" style="align-content:center;margin-left:120px;margin-right:100px">
     @foreach (var recipe in Model)
     {
         <div style="text-align:center">
             <div class="border-style">
-                <div style="font-family:Bahnschrift;font-size:large;color:black;text-shadow:  -1px -1px 0 white, 1px -1px 0 white,
-    -1px 1px 0 white, 1px 1px 0 white">
+                <div class="recipe">
                     @recipe.RecipeName
                 </div>
                 <div>
@@ -32,11 +32,23 @@
 </div>
 
 <style>
+        @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+     h1
+     {
+         font-family: 'Raleway', sans-serif;
+         font-weight:bold;
+         text-align: center;
+     }
+    .row
+    {
+        font-family: 'Raleway', sans-serif;
+    }
+
     .border-style {
         padding-left: 10px;
         padding-right: 10px;
         text-align: center;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Raleway', sans-serif;
         font-size: medium;
         border: solid;
         border-color: transparent;
