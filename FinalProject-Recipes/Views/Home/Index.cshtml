@@ -22,7 +22,7 @@
     <br />
 
     <h3>
-        @DateTime.Now.ToString("MMMM")'s Featured Meals
+        @DateTime.Now.ToString("MMMM")'s Featured Recipes
     </h3>
     <div class="bd-example">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -89,7 +89,7 @@
     </div>
     <hr style="border-top:solid;border-top-color:white; border-top-width:5px; margin-top:50px;margin-bottom:50px" />
     <h3>
-        Random Meals
+        Random Recipes
     </h3>
     <a title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
         <img src='@Url.Content(Model.meals[0].strMealThumb)' width="210" , style="margin:15px;border:solid;border-color:white;border-width:10px" />
@@ -215,15 +215,16 @@
 
 
     .bttn {
-        border: 2px solid #c0700e;
-        padding: 10px 20px;
-        color: #c0700e;
-        text-decoration: none;
-        transition: 0.6s ease;
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin: 0 auto;
-    }
+    border: 2px solid #c0700e;
+    padding: 0px 4px;
+    color: #c0700e;
+    text-decoration: none;
+    transition: 0.6s ease;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 auto;
+    display: flow-root;
+}
 
         .bttn:hover {
             background-color: white;

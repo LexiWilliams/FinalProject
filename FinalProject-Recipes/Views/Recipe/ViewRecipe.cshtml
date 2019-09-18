@@ -16,7 +16,7 @@
             <br />
             if (item.strMealThumb != null)
             {
-                <img src="@item.strMealThumb" alt="@item.strMeal" width="400" height="400" />
+                <img class="thumbnail" src="@item.strMealThumb" alt="@item.strMeal" width="400" height="400" />
             }
 
             <h1><u>@item.strMeal</u></h1>
@@ -346,5 +346,8 @@
 
     .recipe {
         font-family: 'Raleway', sans-serif;
+    }
+    .thumbnail{
+        border-style:inset;
     }
 </style>
