@@ -3,8 +3,7 @@
     ViewData["Title"] = "ViewRecipes";
 }
 @model FinalProject_Recipes.Models.Recipe
-<div style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+<div class="browse">
 
     <div class="row">
         @foreach (var item in Model.meals)
@@ -27,17 +26,24 @@
 
 </div>
     <style>
+           @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
         .border-style {
             color: black;
             padding-left: 10px;
             padding-right: 10px;
             text-align: center;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Raleway', sans-serif;
             font-size: medium;
             border: solid;
             border-color: white;
             border-width: thick;
             margin: 15px;
         }
+
+       
+
+    .recipe {
+        font-family: 'Raleway', sans-serif;
+    }
     </style>
 

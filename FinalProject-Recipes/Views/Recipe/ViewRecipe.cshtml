@@ -4,10 +4,7 @@
 }
 
 @model FinalProject_Recipes.Models.Recipe
-<div style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
-
-
+<div class="recipe">
 
     @{
         @foreach (var item in Model.meals)
@@ -343,3 +340,11 @@
         }
     }
 </div>
+
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+    .recipe {
+        font-family: 'Raleway', sans-serif;
+    }
+</style>
