@@ -56,7 +56,7 @@ namespace FinalProject_Recipes.Controllers
 
             if (mealIdList.Contains(item.idMeal))
             {
-                return View();
+                return RedirectToAction("DisplayFavorite");
             }
             else
             {

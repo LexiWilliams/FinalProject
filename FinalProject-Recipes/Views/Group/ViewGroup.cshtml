@@ -25,9 +25,6 @@
             <td>@item.UserName</td>
             <td>&nbsp;&nbsp;@item.Diet</td>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>
-
-
-            <td>&nbsp;&nbsp; @Html.ActionLink("Remove From List", "RemoveFriend", "Friend", item)</td>
         </tr>
     }
 </table>
