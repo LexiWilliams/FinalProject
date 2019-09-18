@@ -62,6 +62,7 @@ namespace FinalProject_Recipes.Controllers
                 groupList.Add(memberInfo);
             }
             TempData["Name"] = group.GroupName;
+            ViewBag.Message = TempData["NotValid"];
             return View(groupList);
 
         }
@@ -254,7 +255,7 @@ namespace FinalProject_Recipes.Controllers
             if (search == null)
             {
                 Group group = _context.Group.Where(u => u.GroupName == groupName).First();
-                //TempData["RegexMatch"] = "Please enter a valid search";
+                TempData["NotValid"] = "Please enter a valid search";
                 return RedirectToAction("ViewGroup", "Group", group);
             }
         
@@ -266,7 +267,7 @@ namespace FinalProject_Recipes.Controllers
                 if (recipes.meals == null)
                 {
                     Group group = _context.Group.Where(u => u.GroupName == groupName).First();
-                    //TempData["RegexMatch"] = "Please enter a valid search";
+                    TempData["NotValid"] = "There are no recipes that fit that search";
                     return RedirectToAction("ViewGroup", "Group", group);
                 }
                 else
@@ -276,7 +277,7 @@ namespace FinalProject_Recipes.Controllers
                     {
                         filteredRecipes.meals[0] = null;
                     }
-
+                    TempData["NotValid"] = null;
                     return View("FindRecipes", filteredRecipes);
                 }
 

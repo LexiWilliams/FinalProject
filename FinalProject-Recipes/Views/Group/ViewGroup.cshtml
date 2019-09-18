@@ -6,34 +6,36 @@
 }
 
 @model IEnumerable<FinalProject_Recipes.Models.AspNetUsers>
-       
-       
-    
- @Html.ActionLink("Go Back", "DisplayGroups", "Group")
-    
 
+@Html.ActionLink("Go Back", "DisplayGroups", "Group")
 
-<h1>View Group Members</h1>
-@TempData["Name"] 
-<table class="table">
+<h1>
+    View Friends
+</h1>
+@TempData["Name"]
+
+<table class="content-table">
     <tr>
         <th>Group Member</th>
-        <th>Diet</th>
+        <th>&nbsp;&nbsp;Diet</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.UserName</td>
-            <td>@item.Diet</td>
-            <td>@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>
+            <td>&nbsp;&nbsp;@item.Diet</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("View Favorite Recipes", "DisplayFriendFavorite", "Favorites", item)</td>
+
+
+            <td>&nbsp;&nbsp; @Html.ActionLink("Remove From List", "RemoveFriend", "Friend", item)</td>
         </tr>
     }
 </table>
-
 <div class="action-link1">
- @Html.ActionLink("Go to Add Group", "ListGroups", "Group")
-    </div>
-@*@TempData["RegexMatch"]*@
+    @Html.ActionLink("Go to Add Group", "ListGroups", "Group")
+</div>
+
+@ViewBag.Message
 
 <h1>Search By:</h1>
 <form class="form1" action="/Group/SearchRecipesTitle" method="post">
@@ -44,21 +46,84 @@
     <br />
     <br />
 </form>
-
 <style>
     @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-    h1{
-        font-family: 'Raleway', sans-serif;
-    }
-    .form1{
-        font-family: 'Raleway', sans-serif;
-    }
-    .table{
-        font-family: 'Raleway', sans-serif;
-    }
-    .action-link1{
+
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1.5rem;
+        min-width: 400px;
+        border-radius: 10px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0, 0.15);
+        background-color: chocolate;
+        color: white;
         font-family: 'Raleway', sans-serif;
     }
 
+        .content-table thead tr {
+            background-color: coral;
+            color: whitesmoke;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        content.content-table td {
+            padding: 15px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 2px solid #dddddd
+        }
+
+            .content-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+                color: black;
+            }
+
+            .content-table tbody tr:last-of-type {
+                border-bottom: 2px solid coral;
+            }
+
+            .content-table tbody tr.active row {
+                font-weight: bold;
+                color: coral;
+            }
+
+    action-link1 {
+        font-family: 'Raleway', sans-serif;
+    }
+      .form1{
+            font-family: 'Raleway', sans-serif;
+        }
 </style>
+
+
+
+
+
+
+
+
+@*<style>
+        @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+        h1{
+            font-family: 'Raleway', sans-serif;
+        }
+        .form1{
+            font-family: 'Raleway', sans-serif;
+        }
+        .table{
+            font-family: 'Raleway', sans-serif;
+        }
+        .action-link1{
+            font-family: 'Raleway', sans-serif;
+        }
+
+    </style>*@
+
+
+
 
