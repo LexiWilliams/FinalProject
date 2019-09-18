@@ -3,47 +3,43 @@
     ViewData["Title"] = "ViewRecipes";
 }
 @model FinalProject_Recipes.Models.Recipe
-<div class="browse">
-
-    <div class="row">
+<div style="align-content:center">
+    <div class="row" style="text-align:center;margin-left:120px;margin-right:100px">
         @foreach (var item in Model.meals)
         {
             <div class="column">
                 <div class="border-style">
-                    <div>
+                    <div class="results">
                         @item.strMeal
                     </div>
                     <div>
-                        @Html.ActionLink("View Recipe", "ViewRecipe", "Recipe", item)
-                    </div>
-                    <div>
-                        <img src="@item.strMealThumb" alt="@item.strMeal" width="200" height="150" />
+                        <a title=" @item.strMeal" href='@Url.Action("ViewRecipe", "Recipe", item)'>
+                            <img src='@Url.Content(item.strMealThumb)' width="200" style="margin:15px; border:solid;border-color:white;border-width:10px" />
+                        </a>
                     </div>
                 </div>
             </div>
         }
     </div>
-
 </div>
-    <style>
-           @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-        .border-style {
-            color: black;
-            padding-left: 10px;
-            padding-right: 10px;
-            text-align: center;
-            font-family: 'Raleway', sans-serif;
-            font-size: medium;
-            border: solid;
-            border-color: white;
-            border-width: thick;
-            margin: 15px;
-        }
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
-       
+    .border-style {
+        color: black;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: medium;
+        border-color: white;
+        border-width: thick;
+        margin: 15px;
+    }
+
+
 
     .recipe {
         font-family: 'Raleway', sans-serif;
     }
-    </style>
-
+</style>
