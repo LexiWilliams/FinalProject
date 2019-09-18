@@ -1,0 +1,48 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.6rem;
+    min-width: 600px;
+    border-radius: 10px 12px 0 0;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.15);
+    background-color: chocolate;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    line-height: 1.7
+}
+
+    .content-table thead tr {
+        background-color: #f3f3f3;
+        color: chocolate;
+        text-align: center;
+        font-weight: bolder;
+    }
+
+    .content-table th,
+    content.content-table td {
+        padding: 10px 1px;
+    }
+
+    .content-table tbody tr {
+        border-bottom: 1px solid #dddddd
+    }
+
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+            color: black;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 5px solid chocolate;
+        }
+
+        .content-table tbody tr.active row {
+            font-weight: bold;
+            color: coral;
+        }
+        .action-link

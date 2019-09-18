@@ -6,30 +6,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">User Search</h2>
+<h2>
+    User Search
+</h2>
 
 
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
-        <p style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+        <p>
             Find by Username: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"/> |
-            <a asp-action="Index" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">Back to Full List</a>
+            <input type="submit" value="Search" class="btn btn-default"/> |
+            <a asp-action="Index">Back to Full List</a>
         </p>
     </div>
 </form>
-
-<table class="table">
+<link rel="stylesheet" href="~/css/Tables.css" />
+<table class="content-table">
     <thead>
         <tr>
-            <th style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
-               @Html.DisplayNameFor(model => model.UserName)
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th></th>
         </tr>
@@ -39,19 +36,21 @@
         {
             @if (item.Private == false || item.Private == null)
 
-        {
+            {
                 <tr>
-                    <td style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
-                         @Html.DisplayFor(modelItem => item.UserName)
-                         @Html.ActionLink("Add Friend", "AddFriend", "Friend", item)
-
-                   </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                        @Html.ActionLink("Add Friend", "AddFriend", "Friend", item)
+                        
+                    </td>
                 </tr>
             }
         }
     </tbody>
 </table>
+
+
 
 
 
