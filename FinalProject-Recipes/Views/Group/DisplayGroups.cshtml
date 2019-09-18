@@ -3,21 +3,72 @@
     ViewData["Title"] = "DisplayGroups";
 }
 @model IEnumerable<FinalProject_Recipes.Models.Group>
-<table class="table" style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
-    1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
+
+
+<table class="content-table">
     <tr>
         <th>Group</th>
+
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.GroupName</td>
-            <td>@Html.ActionLink("View Group", "ViewGroup", "Group", item)</td>
-            <td>@Html.ActionLink("Remove Group", "RemoveGroup", "Group", item)</td>
-        </tr>
+<tr>
+    <td>@item.GroupName</td>
+    <td>@Html.ActionLink("View Group", "ViewGroup", "Group", item)</td>
+    <td>@Html.ActionLink("Remove Group", "RemoveGroup", "Group", item)</td>
+</tr>
     }
 </table>
 <div style="font-family:Bahnschrift;color:black;text-shadow:  -1px -1px 0 white,
     1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white">
-@Html.ActionLink("Search Group", "ListGroups", "Group")
-    </div>
+    @Html.ActionLink("Search Group", "ListGroups", "Group")
+</div>
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1.5rem;
+        min-width: 400px;
+        border-radius: 10px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0, 0.15);
+        background-color: chocolate;
+        color: white;
+        font-family: 'Raleway', sans-serif;
+    }
+
+        .content-table thead tr {
+            background-color: coral;
+            color: whitesmoke;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        content.content-table td {
+            padding: 15px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 2px solid #dddddd
+        }
+
+            .content-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+                color: black;
+            }
+
+            .content-table tbody tr:last-of-type {
+                border-bottom: 2px solid coral;
+            }
+
+            .content-table tbody tr.active row {
+                font-weight: bold;
+                color: coral;
+            }
+</style>
+
+
+

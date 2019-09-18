@@ -65,7 +65,12 @@ namespace FinalProject_Recipes.Controllers
         public async Task<IActionResult> SearchRecipesTitle(string search)
         {
             Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
-            if (rgx.IsMatch(search))
+            if (search == null)
+            {
+                TempData["RegexMatch"] = "Please enter a valid search";
+                return View("Search");
+            }
+            else if (rgx.IsMatch(search))
             {
 
                 var client = RecipeMethods.GetHttpClient();
@@ -98,7 +103,12 @@ namespace FinalProject_Recipes.Controllers
         public async Task<IActionResult> SearchRecipesIngredients(string search)
         {
             Regex rgx = new Regex(@"^[a-zA-Z]+[ a-zA-Z]*$");
-            if (rgx.IsMatch(search))
+            if (search == null)
+            {
+                TempData["RegexMatch"] = "Please enter a valid search";
+                return View("Search");
+            }
+            else if (rgx.IsMatch(search))
             {
                 var client = RecipeMethods.GetHttpClient();
 
@@ -412,6 +422,11 @@ namespace FinalProject_Recipes.Controllers
                 filteredRecipes.meals = mealStuff;
             }
             return filteredRecipes;
+        }
+
+        public IActionResult AutoComplete()
+        {
+            return View();
         }
     }
 }

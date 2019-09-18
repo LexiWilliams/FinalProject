@@ -249,27 +249,104 @@ namespace FinalProject_Recipes.Controllers
             //diet.AddRange(allergies);
             return allergies;
         }
-        public async Task<IActionResult> SearchRecipesTitle(string search,string groupName)
+
+        public async Task<IActionResult> SearchRecipesTitle(string search, string groupName)
         {
-            var client = RecipeMethods.GetHttpClient();
-            var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
-            var recipes = await response.Content.ReadAsAsync<Recipe>();
-            if (recipes.meals == null)
+            if (search == null)
             {
                 Group group = _context.Group.Where(u => u.GroupName == groupName).First();
                 //TempData["RegexMatch"] = "Please enter a valid search";
-                return RedirectToAction("ViewGroup","Group", group);
+                return RedirectToAction("ViewGroup", "Group", group);
             }
+        
             else
             {
-                var filteredRecipes = FilterRecipes(recipes);
+                var client = RecipeMethods.GetHttpClient();
+                var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
+                var recipes = await response.Content.ReadAsAsync<Recipe>();
+                if (recipes.meals == null)
+                {
+                    Group group = _context.Group.Where(u => u.GroupName == groupName).First();
+                    //TempData["RegexMatch"] = "Please enter a valid search";
+                    return RedirectToAction("ViewGroup", "Group", group);
+                }
+                else
+                {
+                    var filteredRecipes = FilterRecipes(recipes);
+                    if (filteredRecipes.meals == null)
+                    {
+                        filteredRecipes.meals[0] = null;
+                    }
 
-                return View("FindRecipes", filteredRecipes);
+                    return View("FindRecipes", filteredRecipes);
+                }
+
             }
-            
+
+
+            //var client = RecipeMethods.GetHttpClient();
+            //var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
+            //var recipes = await response.Content.ReadAsAsync<Recipe>();
+            //if (recipes.meals == null)
+            //{
+            //    Group group = _context.Group.Where(u => u.GroupName == groupName).First();
+            //    //TempData["RegexMatch"] = "Please enter a valid search";
+            //    return RedirectToAction("ViewGroup","Group", group);
+            //}
+            //else
+            //{
+            //    var filteredRecipes = FilterRecipes(recipes);
+
+            //    return View("FindRecipes", filteredRecipes);
+            //}
+
         }
-       
-        
+
+        //public Recipe FilterRecipes(Recipe recipes)
+        //{
+        //    var restrictions = GetAllRestrictions();
+
+        //    int count = recipes.meals.Length;
+        //    var filteredMeals = new Meal[count];
+        //    int index = 0;
+
+        //    if (restrictions != null)
+        //    {
+        //        foreach (var item in recipes.meals)
+        //        {
+        //            bool isBad = false;
+        //            var ingredients = RecipeMethods.AddIngredients(item);
+        //            var instructions = item.strInstructions.ToLower();
+
+        //            foreach (var name in restrictions)
+        //            {
+        //                var ingred = name.Id.ToLower();
+
+        //                if (ingredients.Contains(ingred))
+        //                {
+        //                    isBad = true;
+        //                }
+        //            }
+        //            foreach (var name in restrictions)
+        //            {
+        //                var ingred = name.Id.ToLower();
+
+        //                if (instructions.Contains(ingred))
+        //                {
+        //                    isBad = true;
+        //                }
+        //            }
+        //            if (isBad == false)
+        //            {
+        //                filteredMeals[index] = item;
+        //            }
+        //            index++;
+        //        }
+        //    }
+        //    Recipe filteredRecipes = new Recipe();
+        //    filteredRecipes.meals = filteredMeals;
+        //    return filteredRecipes;
+        //}
         public Recipe FilterRecipes(Recipe recipes)
         {
             var restrictions = GetAllRestrictions();
@@ -313,6 +390,35 @@ namespace FinalProject_Recipes.Controllers
             }
             Recipe filteredRecipes = new Recipe();
             filteredRecipes.meals = filteredMeals;
+
+            Recipe myRecipes = new Recipe();
+            count = 0;
+            foreach (var recipe in filteredRecipes.meals)
+            {
+                if (recipe != null)
+                {
+                    count++;
+                }
+            }
+            if (count != 0)
+            {
+                Meal[] newMeals = new Meal[count];
+                count = 0;
+                foreach (var recipe in filteredRecipes.meals)
+                {
+                    if (recipe != null)
+                    {
+                        newMeals[count] = recipe;
+                        count++;
+                    }
+                }
+                filteredRecipes.meals = newMeals;
+            }
+            else
+            {
+                Meal[] mealStuff = new Meal[1];
+                filteredRecipes.meals = mealStuff;
+            }
             return filteredRecipes;
         }
     }
