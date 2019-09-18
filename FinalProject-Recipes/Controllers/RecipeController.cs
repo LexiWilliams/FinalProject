@@ -78,7 +78,7 @@ namespace FinalProject_Recipes.Controllers
                 var recipes = await response.Content.ReadAsAsync<Recipe>();
                 if (recipes.meals == null)
                 {
-                    TempData["RegexMatch"] = "Please enter a valid search";
+                    TempData["RegexMatch"] = "No meal by this name";
                     return View("search");
                 }
                 else
@@ -116,7 +116,7 @@ namespace FinalProject_Recipes.Controllers
                 var recipes = await response.Content.ReadAsAsync<Recipe>();
                 if (recipes.meals == null)
                 {
-                    TempData["RegexMatch"] = "Please enter a valid search";
+                    TempData["RegexMatch"] = "No meals by this name";
                     return View("search");
 
                 }

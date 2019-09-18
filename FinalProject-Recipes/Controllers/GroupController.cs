@@ -244,9 +244,8 @@ namespace FinalProject_Recipes.Controllers
         }
         public List<DietsAndRestriction> GetAllRestrictions()
         {
-            //var diet = GetDiet();
+   
             var allergies = GetAllergies();
-            //diet.AddRange(allergies);
             return allergies;
         }
 
@@ -284,69 +283,9 @@ namespace FinalProject_Recipes.Controllers
             }
 
 
-            //var client = RecipeMethods.GetHttpClient();
-            //var response = await client.GetAsync($"api/json/v1/{_apiKey}/search.php?s={search}");
-            //var recipes = await response.Content.ReadAsAsync<Recipe>();
-            //if (recipes.meals == null)
-            //{
-            //    Group group = _context.Group.Where(u => u.GroupName == groupName).First();
-            //    //TempData["RegexMatch"] = "Please enter a valid search";
-            //    return RedirectToAction("ViewGroup","Group", group);
-            //}
-            //else
-            //{
-            //    var filteredRecipes = FilterRecipes(recipes);
-
-            //    return View("FindRecipes", filteredRecipes);
-            //}
 
         }
 
-        //public Recipe FilterRecipes(Recipe recipes)
-        //{
-        //    var restrictions = GetAllRestrictions();
-
-        //    int count = recipes.meals.Length;
-        //    var filteredMeals = new Meal[count];
-        //    int index = 0;
-
-        //    if (restrictions != null)
-        //    {
-        //        foreach (var item in recipes.meals)
-        //        {
-        //            bool isBad = false;
-        //            var ingredients = RecipeMethods.AddIngredients(item);
-        //            var instructions = item.strInstructions.ToLower();
-
-        //            foreach (var name in restrictions)
-        //            {
-        //                var ingred = name.Id.ToLower();
-
-        //                if (ingredients.Contains(ingred))
-        //                {
-        //                    isBad = true;
-        //                }
-        //            }
-        //            foreach (var name in restrictions)
-        //            {
-        //                var ingred = name.Id.ToLower();
-
-        //                if (instructions.Contains(ingred))
-        //                {
-        //                    isBad = true;
-        //                }
-        //            }
-        //            if (isBad == false)
-        //            {
-        //                filteredMeals[index] = item;
-        //            }
-        //            index++;
-        //        }
-        //    }
-        //    Recipe filteredRecipes = new Recipe();
-        //    filteredRecipes.meals = filteredMeals;
-        //    return filteredRecipes;
-        //}
         public Recipe FilterRecipes(Recipe recipes)
         {
             var restrictions = GetAllRestrictions();
