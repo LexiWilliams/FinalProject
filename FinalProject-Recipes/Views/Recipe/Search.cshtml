@@ -78,7 +78,7 @@
 </head>
 <body>
 
-    <h2>Search</h2>
+    <h2>Search by Your Preferences</h2>
 
     <p>Search by Title:</p>
 
@@ -86,8 +86,9 @@
     <form autocomplete="off" action="/Recipe/SearchRecipesTitle" method="post" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
     <div class="search-title" style="width:300px;">
         <input type="text" name="search" placeholder="Title">
-    </div>
+
     <input type="submit" value="Search For Recipe">
+    </div>
 
 
     <br />
@@ -100,6 +101,7 @@
         <div class="autocomplete" style="width:300px;">
             <input id="myInput" type="text" name="search" placeholder="Ingredient" pattern="^[a-zA-Z]+[ a-zA-Z]*$" />
         </div>
+        <br />
         <input type="submit" value="Search For Recipe">
     </form>
 

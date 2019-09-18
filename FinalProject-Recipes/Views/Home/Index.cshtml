@@ -91,8 +91,9 @@
     <h3>
         Random Recipes
     </h3>
-    <a title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
+    <a  title="@Model.meals[0].strMeal " href='@Url.Action("ViewRecipe", "Recipe", Model.meals[0])'>
         <img src='@Url.Content(Model.meals[0].strMealThumb)' width="210" , style="margin:15px;border:solid;border-color:white;border-width:10px" />
+
     </a>
     <a title=" @Model.meals[1].strMeal" href='@Url.Action("ViewRecipe", "Recipe", Model.meals[1])'>
         <img src='@Url.Content(Model.meals[1].strMealThumb)' width="210" style="margin:15px; border:solid;border-color:white;border-width:10px" />
@@ -117,7 +118,10 @@
     </a>
     <hr style="border-top:solid;border-top-color:white; border-top-width:5px;margin-top:50px;margin-bottom:50px " />
 </div>
-<div class="text-center">
+<h3>
+  Get Recipes by Country
+</h3>
+<div style="text-align:center">
     <a Title="American" href='@Url.Action("SearchRecipesArea", "Recipe", new { search = "American"})'>
         <img src='@Url.Content("~/USAFlag.png")' width="50" />
     </a>
